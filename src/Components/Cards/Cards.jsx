@@ -6,10 +6,10 @@ import Card from "../Card/Card";
 
 const Cards = () => {
   return (
-    <div className="Cards">
+    <div className="admin-cards">
       {cardsData.map((card, id) => {
         return (
-          <div className="parentContainer" key={id}>
+          <div className="admin-cards-parent-container" key={id}>
             <Card
               title={card.title}
               color={card.color}

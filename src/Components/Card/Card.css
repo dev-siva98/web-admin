@@ -8,6 +8,7 @@
   position: relative;
   cursor: pointer;
 }
+
 .admin-card-compact:hover {
   box-shadow: none !important;
 }
@@ -20,23 +21,27 @@
   justify-content: flex-end;
   gap: 1rem;
 }
+
 .CircularProgressbar {
   width: 4rem !important;
   overflow: visible;
 }
+
 .CircularProgressbar-path {
   stroke: white !important;
   stroke-width: 12px !important;
   filter: drop-shadow(2px 4px 6px white);
 }
+
 .CircularProgressbar-trail {
   display: none;
 }
+
 .CircularProgressbar-text {
   fill: white !important;
 }
 
-.admin-card-compact-radial > span {
+.admin-card-compact-radial>span {
   font-size: 17px;
   font-weight: bold;
 }
@@ -50,11 +55,12 @@
   justify-content: space-between;
 }
 
-.admin-card-compact-detail > span:nth-child(2) {
+.admin-card-compact-detail>span:nth-child(2) {
   font-size: 22px;
   font-weight: bold;
 }
-.admin-card-compact-detail > span:nth-child(3) {
+
+.admin-card-compact-detail>span:nth-child(3) {
   font-size: 12px;
 }
 
@@ -72,13 +78,15 @@
   justify-content: space-around;
   padding: 1rem;
 }
-.admin-card-expanded > span:nth-of-type(1) {
+
+.admin-card-expanded>span:nth-of-type(1) {
   color: white;
   font-size: 26px;
   font-weight: bold;
   text-shadow: 0px 0px 15px white;
 }
-.admin-card-expanded > span:nth-of-type(2) {
+
+.admin-card-expanded>span:nth-of-type(2) {
   color: rgb(236, 236, 236);
   font-size: 15px;
 }

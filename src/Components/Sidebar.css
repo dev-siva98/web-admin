@@ -1,16 +1,17 @@
-.sidebar {
+.admin-sidebar {
   display: flex;
   flex-direction: column;
   position: relative;
   padding-top: 4rem;
   transition: all 300ms ease;
 }
-/* logo */
-.bars{
+
+/* admin-sidebar-logo */
+.bars {
   display: none;
 }
 
-.logo {
+.admin-sidebar-logo {
   display: flex;
   height: 5rem;
   font-weight: bold;
@@ -20,24 +21,26 @@
   justify-content: center;
   height: 4%;
 }
-.logo > span > span {
+
+.admin-sidebar-logo>span>span {
   color: var(--pink);
 }
 
-.logo > img {
+.admin-sidebar-logo>img {
   width: 3rem;
   height: 3rem;
 }
 
 
 /* menu */
-.menu {
+.admin-sidebar-menu {
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-.menuItem {
+
+.admin-sidebar-menu-item {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -49,11 +52,11 @@
   font-size: 14px;
 }
 
-.menuItem:hover {
+.admin-sidebar-menu-item:hover {
   cursor: pointer;
 }
 
-.menu .menuItem:last-child {
+.admin-sidebar-menu .admin-sidebar-menu-item:last-child {
   position: absolute;
   bottom: 2.3rem;
   width: 100%;
@@ -63,6 +66,7 @@
   background: var(--activeItem);
   margin-left: 0;
 }
+
 .active::before {
   content: "";
   width: 8px;
@@ -74,16 +78,17 @@
 
 /* Tablets */
 @media screen and (max-width: 1200px) {
-  .menuItem>span{
+  .admin-sidebar-menu-item>span {
     display: none;
   }
-  .logo{
+
+  .admin-sidebar-logo {
     display: none;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .sidebar{
+  .admin-sidebar {
     position: fixed;
     z-index: 9;
     background: #ffe0e0;
@@ -91,28 +96,32 @@
     padding-right: 1rem;
     height: 100%;
   }
-  .menuItem>span{
+
+  .admin-sidebar-menu-item>span {
     display: block;
   }
-  .logo{
+
+  .admin-sidebar-logo {
     display: flex;
   }
-  .menu .menuItem:last-child {
+
+  admin-sidebar-menu .admin-sidebar-menu-item:last-child {
     position: relative;
     margin-top: 6rem;
   }
-  .bars{
+
+  .bars {
     display: flex;
     position: fixed;
     top: 2rem;
-    left:60%;
-    background:#ffe0e0;
-    padding:10px;
+    left: 60%;
+    background: #ffe0e0;
+    padding: 10px;
     border-radius: 10px;
     z-index: 9;
   }
-  .close{
+
+  .close {
     left: -60%;
   }
 }
-

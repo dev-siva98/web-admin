@@ -45,7 +45,7 @@ const makeStyle=(status)=>{
 
 export default function BasicTable() {
   return (
-      <div className="Table">
+      <div className="admin-table">
       <h3>Recent Orders</h3>
         <TableContainer
           component={Paper}
@@ -73,9 +73,9 @@ export default function BasicTable() {
                   <TableCell align="left">{row.trackingId}</TableCell>
                   <TableCell align="left">{row.date}</TableCell>
                   <TableCell align="left">
-                    <span className="status" style={makeStyle(row.status)}>{row.status}</span>
+                    <span className="admin-table-status" style={makeStyle(row.status)}>{row.status}</span>
                   </TableCell>
-                  <TableCell align="left" className="Details">Details</TableCell>
+                  <TableCell align="left" className="admin-table-details">Details</TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -1,23 +1,23 @@
-.RightSide{
+.admin-right-side {
     width: 95%;
     margin-top: 2.3rem;
 }
 
 
 @media screen and (max-width: 1200px) {
-    .RightSide{
+    .admin-right-side {
         justify-content: flex-start;
         margin-top: 3.3rem;
     }
 }
 
-@media screen and (max-width: 768px)
-{
-    .RightSide{
+@media screen and (max-width: 768px) {
+    .admin-right-side {
         width: 100%;
         margin-top: 0;
     }
-    .RightSide>div{
+
+    .admin-right-side>div {
         display: flex;
         flex-direction: column;
     }

@@ -4,7 +4,7 @@ import Table from "../Table/Table";
 import "./MainDash.css";
 const MainDash = () => {
   return (
-    <div className="MainDash">
+    <div className="admin-main-dash">
       <h1>Dashboard</h1>
       <Cards />
       <Table />

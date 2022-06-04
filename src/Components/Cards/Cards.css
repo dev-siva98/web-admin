@@ -1,23 +1,24 @@
-.Cards {
+.admin-cards {
   display: flex;
   gap: 10px;
 }
-.parentContainer{
+
+.admin-cards-parent-container {
   width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
-  .Cards{
+  .admin-cards {
     flex-direction: column;
   }
-  .parentContainer{
+
+  .admin-cards-parent-container {
     height: 9rem;
   }
 }
 
-@media screen and (max-width: 768px)
-{
-  .Cards{
+@media screen and (max-width: 768px) {
+  .admin-cards {
     width: 90%;
   }
 }

@@ -4,10 +4,10 @@ import { UpdatesData } from "../../Data/Data";
 
 const Updates = () => {
   return (
-    <div className="Updates">
+    <div className="admin-updates">
       {UpdatesData.map((update) => {
         return (
-          <div className="update">
+          <div className="admin-updates-item">
             <img src={update.img} alt="profile" />
             <div className="noti">
               <div  style={{marginBottom: '0.5rem'}}>
