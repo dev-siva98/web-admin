@@ -67,10 +67,10 @@
 /* Expanded Card */
 .admin-card-expanded {
   position: absolute;
-  width: 60%;
+  width: 50%;
   height: 70vh;
   z-index: 9;
-  left: 13rem;
+  left: 16rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -107,7 +107,7 @@
   .admin-card-expanded {
     top: 8rem;
     height: 50%;
-    left: 25px;
-    width: 80%;
+    left: 50px;
+    width: 60%;
   }
 }

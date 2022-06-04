@@ -63,8 +63,15 @@
 
 /* Tablets */
 @media screen and (max-width: 1200px) {
-  .admin-sidebar-menu-item>span {
-    display: none;
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    width: 20%;
+  }
+
+  .admin-sidebar-menu {
+    margin-top: 2rem;
+
   }
 }
 
@@ -81,6 +88,7 @@
     justify-content: space-between;
     padding: 0 20px 0 20px;
     top: 0;
+    width: initial;
   }
 
   .admin-sidebar-toggle {
