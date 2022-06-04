@@ -5,6 +5,7 @@ import {BrowserRouter as Router,
     Route
 } from 'react-router-dom'
 import Dashboard from './Dashboard/Dashboard'
+import Orders from './Orders/Orders'
 
 function MainPage() {
   return (
@@ -12,6 +13,7 @@ function MainPage() {
         <Router>
             <Routes>
                 <Route path='/' element={<Dashboard/>} />
+                <Route path='/orders' element={<Orders/>}/>
             </Routes>
         </Router>
     </div>

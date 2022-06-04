@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
-import { UilSignOutAlt, UilBars, UilTimes } from "@iconscout/react-unicons";
+import { UilBars, UilTimes } from "@iconscout/react-unicons";
 import { SidebarData } from "../../Data/Data";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
 
-  const [selected, setSelected] = useState(0);
-  const [click, setClick] = useState(true)
+  const [selected, setSelected] = useState(0); // to set active navigation style
+  const [click, setClick] = useState(true);  // to open mobile navigation
 
   const handleClick = (index) => {
     setSelected(index)
@@ -40,19 +41,23 @@ const Sidebar = () => {
       </div>
       <div className="admin-sidebar-navigation">
         <div className="admin-sidebar-toggle">
-          {click ? <UilTimes/> : <UilBars/>}
+          {click ? <UilTimes /> : <UilBars />}
         </div>
-        <div className={`admin-sidebar-menu ${click ? 'active' : ''}`}>
+        <div className={`admin-sidebar-menu ${click ? 'active' : ''}`} ref={ref}>
           {SidebarData.map((item, index) => {
             return (
-              <div
-                className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
+              <Link
+                to={item.heading}
                 key={index}
-                onClick={() => handleClick(index)}
               >
-                <item.icon />
-                <span>{item.heading}</span>
-              </div>
+                <div
+                  className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
+                  onClick={() => handleClick(index)}
+                >
+                  <item.icon />
+                  <span>{item.heading}</span>
+                </div>
+              </Link>
             );
           })}
         </div>

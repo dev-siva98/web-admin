@@ -1,5 +1,4 @@
 .admin-main-dash {
-    /* padding-top: 1rem; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -8,7 +7,6 @@
 @media screen and (max-width: 1200px) {
     .admin-main-dash {
         justify-content: flex-start;
-        margin-top: 2rem;
     }
 }
 
