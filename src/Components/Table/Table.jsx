@@ -46,6 +46,7 @@ export default function BasicTable() {
     <div className="admin-table">
       <h3>Recent Orders</h3>
       <TableContainer
+      className="admin-table-container"
         component={Paper}
         style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
       >

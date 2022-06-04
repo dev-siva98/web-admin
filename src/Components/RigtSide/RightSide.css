@@ -3,6 +3,7 @@
     grid-column: 3 / 4;
     width: 95%;
     margin-top: 2.3rem;
+    justify-self: center;
 }
 
 
@@ -19,7 +20,6 @@
     .admin-right-side {
         grid-row: 4 / 5;
         grid-column: 1 / -1;
-        width: 100%;
         margin-top: 0;
     }
 
