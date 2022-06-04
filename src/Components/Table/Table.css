@@ -1,3 +1,8 @@
+.admin-table {
+  grid-row: 2 / -1;
+  grid-column: 2 / 3;
+}
+
 .MuiTableRow-root>* {
   padding: 10px;
 }
@@ -26,14 +31,16 @@ th {
 
 @media screen and (max-width: 1200px) {
   .admin-table {
-    width: 170%;
-    margin-top: 2rem;
+    grid-column: 2 / 4;
+    margin: 0 2rem 1rem 0;
   }
 }
 
 
 @media screen and (max-width: 768px) {
   .admin-table {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
     position: relative;
     display: flex;
     flex-direction: column;
