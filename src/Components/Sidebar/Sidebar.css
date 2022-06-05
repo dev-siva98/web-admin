@@ -34,6 +34,11 @@
   gap: 2rem;
 }
 
+.admin-sidebar-menu-link {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 .admin-sidebar-menu-item {
   display: flex;
   align-items: center;
