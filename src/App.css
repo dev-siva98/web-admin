@@ -27,10 +27,12 @@
 .AppGlass {
   display: grid;
   grid-template-columns: 11rem auto 20rem;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr auto;
   gap: 16px;
   width: 97%;
   background: var(--glass);
+  padding-bottom: 1rem;
+  overflow: hidden;
 }
 
 
