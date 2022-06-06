@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const [selected, setSelected] = useState(0); // to set active navigation style
+  const [selected, setSelected] = useState(null); // to set active navigation style
   const [click, setClick] = useState(false);  // to open mobile navigation
 
   const handleClick = (index) => {
@@ -46,23 +46,25 @@ const Sidebar = () => {
           {click ? <UilTimes /> : <UilBars />}
         </div>
         <div className={`admin-sidebar-menu ${click ? 'active' : ''}`} ref={ref}>
-          {sidebarData.map((item, index) => {
-            return (
-              <Link
-                to={item.link}
-                key={index}
-                className='admin-sidebar-menu-link'
-              >
-                <div
-                  className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
-                  onClick={() => handleClick(index)}
+          {
+            sidebarData.map((item, index) => {
+              return (
+                <Link
+                  to={item.link}
+                  key={index}
+                  className='admin-sidebar-menu-link'
                 >
-                  <item.icon />
-                  <span>{item.heading}</span>
-                </div>
-              </Link>
-            );
-          })}
+                  <div
+                    className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
+                    onClick={() => handleClick(index)}
+                  >
+                    <item.icon />
+                    <span>{item.heading}</span>
+                  </div>
+                </Link>
+              );
+            })
+          }
           <div
             className='admin-sidebar-menu-item'
             onClick={() => handleClick(null)}

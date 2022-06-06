@@ -3,6 +3,9 @@ import './MainPage.css'
 import { Routes, Route } from 'react-router-dom'
 import Dashboard from './Dashboard/Dashboard'
 import Orders from './Orders/Orders'
+import Products from './Products/Products'
+import Customers from './Customers/Customers'
+
 
 function MainPage() {
   return (
@@ -10,6 +13,8 @@ function MainPage() {
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='/orders' element={<Orders />} />
+        <Route path='/customers' element={<Customers />} />
+        <Route path='/products' element={<Products />} />
       </Routes>
     </div>
   )

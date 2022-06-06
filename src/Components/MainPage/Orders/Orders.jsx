@@ -1,6 +1,7 @@
 import React from 'react'
 import './Orders.css'
 import { ordersCard } from '../../../Data/Data'
+import Card from '../Card/Card'
 
 function Orders() {
     return (
@@ -9,15 +10,8 @@ function Orders() {
             <div className="admin-orders-card-container">
                 {
                     ordersCard.map((card, index) => {
-                        const Png = card.png
                         return (
-                            <div className="admin-orders-card"
-                                key={index}
-                                style={{ background: card.backGround, boxShadow: card.boxShadow }}>
-                                <span>{card.title}</span>
-                                <Png className='admin-orders-card-png' />
-                                <span>{card.value}</span>
-                            </div>
+                            <Card card={card} key = {index} />
                         )
                     })
                 }

@@ -1,0 +1,36 @@
+.admin-customers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.admin-customers-card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+    justify-items: center;
+}
+
+.admin-component-card.add-customer {
+    background: linear-gradient(180deg, #bb67ff 0%, #c484f3 100%);
+    box-shadow: 0px 10px 20px 0px #e0c6f5;
+}
+
+.admin-component-card.customer-support {
+    background: linear-gradient(180deg, #ffc561 0%, #fac466 100%);
+    box-shadow: 0px 10px 20px 0px #fad698;
+}
+
+@media screen and (max-width: 1200px) {
+    .admin-customers-card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .admin-customers {
+        align-items: center;
+    }
+}

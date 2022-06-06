@@ -157,3 +157,54 @@ export const ordersCard = [
 
   },
 ]
+
+export const productsCard = [
+  {
+    title: "All Products",
+    backGround: "linear-gradient(180deg, #3699f5 0%, #6eb6fa 100%)",
+    boxShadow: "0px 10px 20px 0px #b0d4f5",
+    barValue: 70,
+    value: "64",
+    png: UilClipboardAlt,
+
+  },
+  {
+    title: "Active Products",
+    backGround: "linear-gradient(180deg, #5ee851 0%, #5ddb51 100%)",
+    boxShadow: "0px 10px 20px 0px #8aff92",
+    barValue: 70,
+    value: "60",
+    png: UilClipboardAlt,
+
+  },
+  {
+    title: "Inactive Products",
+    backGround: "linear-gradient(180deg, #ff7a6e 0%, #f57064 100%)",
+    boxShadow: "0px 10px 20px 0px #f5897f",
+    barValue: 70,
+    value: "4",
+    png: UilClipboardAlt,
+
+  }
+]
+
+export const customersCard = [
+  {
+    title: "All Customers",
+    backGround: "linear-gradient(180deg, #3699f5 0%, #6eb6fa 100%)",
+    boxShadow: "0px 10px 20px 0px #b0d4f5",
+    barValue: 70,
+    value: "64",
+    png: UilClipboardAlt,
+
+  },
+  {
+    title: "New Customers",
+    backGround: "linear-gradient(180deg, #5ee851 0%, #5ddb51 100%)",
+    boxShadow: "0px 10px 20px 0px #8aff92",
+    barValue: 70,
+    value: "60",
+    png: UilClipboardAlt,
+
+  }
+]
