@@ -10,13 +10,14 @@ import Chart from "react-apexcharts";
 
 const Card = (props) => {
   const [expanded, setExpanded] = useState(false);
-  return (<>
-    {expanded ? (
-      <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />
-    ) : (
-      <CompactCard param={props} setExpanded={() => setExpanded(true)} />
-    )}
-  </>
+  return (
+    <>
+      {expanded ? (
+        <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />
+      ) : (
+        <CompactCard param={props} setExpanded={() => setExpanded(true)} />
+      )}
+    </>
   );
 };
 

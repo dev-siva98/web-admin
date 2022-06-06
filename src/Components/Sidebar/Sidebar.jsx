@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-
   const [selected, setSelected] = useState(0); // to set active navigation style
   const [click, setClick] = useState(false);  // to open mobile navigation
 
