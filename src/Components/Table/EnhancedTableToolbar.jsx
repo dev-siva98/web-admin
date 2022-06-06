@@ -38,7 +38,7 @@ export default function EnhancedTableToolbar(props){
                     id="tableTitle"
                     component="div"
                 >
-                    Nutrition
+                    Orders
                 </Typography>
             )}
 

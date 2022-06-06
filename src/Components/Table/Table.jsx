@@ -14,18 +14,18 @@ import Switch from '@mui/material/Switch';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(orderId, total, paymentMode, orderStatus, createdAt) {
     return {
-        name,
-        calories,
-        fat,
-        carbs,
-        protein,
+        orderId,
+        total,
+        paymentMode,
+        orderStatus,
+        createdAt,
     };
 }
 
 const rows = [
-    createData('Cupcake', 305, 3.7, 67, 4.3),
+    createData('MCPP1652774567689', 850, "online", "Placed", '2022 - 06 - 12'),
     createData('Donut', 452, 25.0, 51, 4.9),
     createData('Eclair', 262, 16.0, 24, 6.0),
     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -72,8 +72,8 @@ function stableSort(array, comparator) {
 
 
 export default function EnhancedTable() {
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+    const [order, setOrder] = React.useState('desc');
+    const [orderBy, setOrderBy] = React.useState('createdAt');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
@@ -87,19 +87,19 @@ export default function EnhancedTable() {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.name);
+            const newSelecteds = rows.map((n) => n.orderId);
             setSelected(newSelecteds);
             return;
         }
         setSelected([]);
     };
 
-    const handleClick = (event, name) => {
-        const selectedIndex = selected.indexOf(name);
+    const handleClick = (event, orderId) => {
+        const selectedIndex = selected.indexOf(orderId);
         let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
+            newSelected = newSelected.concat(selected, orderId);
         } else if (selectedIndex === 0) {
             newSelected = newSelected.concat(selected.slice(1));
         } else if (selectedIndex === selected.length - 1) {
@@ -127,7 +127,7 @@ export default function EnhancedTable() {
         setDense(event.target.checked);
     };
 
-    const isSelected = (name) => selected.indexOf(name) !== -1;
+    const isSelected = (orderId) => selected.indexOf(orderId) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
@@ -136,10 +136,11 @@ export default function EnhancedTable() {
     return (
         <div className="admin-table">
             <Box sx={{ width: '100%' }}>
-                <Paper sx={{ width: '100%', mb: 2 }}>
+                <Paper sx={{ mb: 2 }}>
                     <EnhancedTableToolbar numSelected={selected.length} />
-                    <TableContainer>
+                    <TableContainer sx={{ overflowX: 'auto' }}>
                         <Table
+                            sx={{ width: 'max-content' }}
                             aria-labelledby="tableTitle"
                             size={dense ? 'small' : 'medium'}
                         >
@@ -157,17 +158,17 @@ export default function EnhancedTable() {
                                 {stableSort(rows, getComparator(order, orderBy))
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                     .map((row, index) => {
-                                        const isItemSelected = isSelected(row.name);
+                                        const isItemSelected = isSelected(row.orderId);
                                         const labelId = `enhanced-table-checkbox-${index}`;
 
                                         return (
                                             <TableRow
                                                 hover
-                                                onClick={(event) => handleClick(event, row.name)}
+                                                onClick={(event) => handleClick(event, row.orderId)}
                                                 role="checkbox"
                                                 aria-checked={isItemSelected}
                                                 tabIndex={-1}
-                                                key={row.name}
+                                                key={row.orderId}
                                                 selected={isItemSelected}
                                             >
                                                 <TableCell padding="checkbox">
@@ -185,12 +186,12 @@ export default function EnhancedTable() {
                                                     scope="row"
                                                     padding="none"
                                                 >
-                                                    {row.name}
+                                                    {row.orderId}
                                                 </TableCell>
-                                                <TableCell align="right">{row.calories}</TableCell>
-                                                <TableCell align="right">{row.fat}</TableCell>
-                                                <TableCell align="right">{row.carbs}</TableCell>
-                                                <TableCell align="right">{row.protein}</TableCell>
+                                                <TableCell align="right">{row.total}</TableCell>
+                                                <TableCell align="right">{row.paymentMode}</TableCell>
+                                                <TableCell align="right">{row.orderStatus}</TableCell>
+                                                <TableCell align="right">{row.createdAt}</TableCell>
                                             </TableRow>
                                         );
                                     })}

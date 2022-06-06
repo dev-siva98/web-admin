@@ -17,34 +17,34 @@ export default function EnhancedTableHead(props) {
 
     const headCells = [
         {
-            id: 'name',
+            id: 'orderId',
             numeric: false,
             disablePadding: true,
-            label: 'Product',
+            label: 'Order Id',
         },
         {
-            id: 'calories',
+            id: 'total',
             numeric: true,
             disablePadding: false,
-            label: 'Calories',
+            label: 'Total',
         },
         {
-            id: 'fat',
-            numeric: true,
+            id: 'paymentMode',
+            numeric: false,
             disablePadding: false,
-            label: 'Fat (g)',
+            label: 'Payment Mode',
         },
         {
-            id: 'carbs',
-            numeric: true,
+            id: 'orderStatus',
+            numeric: false,
             disablePadding: false,
-            label: 'Carbs (g)',
+            label: 'Order Status',
         },
         {
-            id: 'protein',
-            numeric: true,
+            id: 'createdAt',
+            numeric: false,
             disablePadding: false,
-            label: 'Protein (g)',
+            label: 'Date',
         },
     ];
 
@@ -58,14 +58,14 @@ export default function EnhancedTableHead(props) {
                         checked={rowCount > 0 && numSelected === rowCount}
                         onChange={onSelectAllClick}
                         inputProps={{
-                            'aria-label': 'select all desserts',
+                            'aria-label': 'select all items',
                         }}
                     />
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        align='right'
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
