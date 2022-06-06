@@ -16,7 +16,7 @@ import img2 from "../imgs/img2.png";
 import img3 from "../imgs/img3.png";
 
 // Sidebar Data
-export const SidebarData = [
+export const sidebarData = [
   {
     icon: UilEstate,
     heading: "Dashboard",
@@ -98,7 +98,7 @@ export const cardsData = [
 ];
 
 // Recent Update Card Data
-export const UpdatesData = [
+export const updatesData = [
   {
     img: img1,
     name: "Andrew Thomas",
@@ -118,3 +118,42 @@ export const UpdatesData = [
     time: "2 hours ago",
   },
 ];
+
+export const ordersCard = [
+  {
+    title: "Active Orders",
+    backGround: "linear-gradient(180deg, #3699f5 0%, #6eb6fa 100%)",
+    boxShadow: "0px 10px 20px 0px #b0d4f5",
+    barValue: 70,
+    value: "12",
+    png: UilClipboardAlt,
+
+  },
+  {
+    title: "Completed Orders",
+    backGround: "linear-gradient(180deg, #5ee851 0%, #5ddb51 100%)",
+    boxShadow: "0px 10px 20px 0px #8aff92",
+    barValue: 70,
+    value: "32",
+    png: UilClipboardAlt,
+
+  },
+  {
+    title: "Cancelled Orders",
+    backGround: "linear-gradient(180deg, #ff7a6e 0%, #f57064 100%)",
+    boxShadow: "0px 10px 20px 0px #f5897f",
+    barValue: 70,
+    value: "8",
+    png: UilClipboardAlt,
+
+  },
+  {
+    title: "Total Orders",
+    backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)",
+    boxShadow: "0px 10px 20px 0px #e0c6f5",
+    barValue: 70,
+    value: "52",
+    png: UilClipboardAlt,
+
+  },
+]

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 import { UilBars, UilTimes, UilSignOutAlt } from "@iconscout/react-unicons";
-import { SidebarData } from "../../Data/Data";
+import { sidebarData } from "../../Data/Data";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -33,7 +33,9 @@ const Sidebar = () => {
 
   return (
     <motion.div className='admin-sidebar'>
+
       {/* logo */}
+
       <div className="admin-sidebar-logo">
         <span>
           make<span>MY</span>cake
@@ -45,7 +47,7 @@ const Sidebar = () => {
           {click ? <UilTimes /> : <UilBars />}
         </div>
         <div className={`admin-sidebar-menu ${click ? 'active' : ''}`} ref={ref}>
-          {SidebarData.map((item, index) => {
+          {sidebarData.map((item, index) => {
             return (
               <Link
                 to={item.link}

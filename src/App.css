@@ -18,7 +18,6 @@
       #ffe1bc 29.63%,
       #ffcfd1 51.55%,
       #f3c6f1 90.85%);
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,15 +26,13 @@
 
 .AppGlass {
   display: grid;
-  height: 97%;
-  width: 97%;
-  background: var(--glass);
-  border-radius: 2rem;
-  gap: 16px;
   grid-template-columns: 11rem auto 20rem;
   grid-template-rows: 1fr 1fr;
-  overflow: hidden;
+  gap: 16px;
+  width: 97%;
+  background: var(--glass);
 }
+
 
 @media screen and (max-width: 1200px) {
   .AppGlass {

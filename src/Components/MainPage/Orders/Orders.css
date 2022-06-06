@@ -1,0 +1,43 @@
+.admin-orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.admin-orders-card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+    justify-items: center;
+}
+
+.admin-orders-card {
+    height: 4rem;
+    width: 15rem;
+    color: white;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    padding: 1rem;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.admin-orders-card:hover {
+    box-shadow: none !important;
+}
+
+.admin-orders-card-png {
+    width: 25px;
+    justify-self: end;
+}
+
+.admin-orders-card>:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    font-size: 25px;
+    font-weight: 700;
+}
