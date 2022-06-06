@@ -14,6 +14,7 @@ import Switch from '@mui/material/Switch';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 import axios from '../../axios';
+import OrderDetails from './OrderDetails/OrderDetails';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -54,6 +55,7 @@ export default function EnhancedTable() {
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [rows, setRows] = useState([])
+    const [ShowOrder, setShowOrder] = useState(false)
 
     useEffect(() => {
         axios.get('getorders').then(res => {
@@ -109,6 +111,10 @@ export default function EnhancedTable() {
         setDense(event.target.checked);
     };
 
+    const handleOrder = (order) => {
+        setShowOrder(order)
+    }
+
     const isSelected = (orderId) => selected.indexOf(orderId) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -117,6 +123,13 @@ export default function EnhancedTable() {
 
     return (
         <div className="admin-table">
+            {
+                ShowOrder &&
+                <div className='admin-table-show-details'>
+                    <OrderDetails order={ShowOrder} />
+                    <button onClick={() => setShowOrder(null)}>Close</button>
+                </div>
+            }
             <Box sx={{ width: '100%' }}>
                 <Paper sx={{ mb: 2 }}>
                     <EnhancedTableToolbar numSelected={selected.length} />
@@ -169,6 +182,8 @@ export default function EnhancedTable() {
                                                     id={labelId}
                                                     scope="row"
                                                     padding="none"
+                                                    className='admin-table-order'
+                                                    onClick={() => { handleOrder(row) }}
                                                 >
                                                     {row.orderId}
                                                 </TableCell>

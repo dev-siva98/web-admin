@@ -11,6 +11,17 @@
     /* Firefox */
 }
 
+.admin-table-show-details {
+    position: absolute;
+    z-index: 999;
+    background-color: aliceblue;
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .admin-table::-webkit-scrollbar {
     display: none;
@@ -22,6 +33,15 @@
 
 .MuiTableRow-root.MuiTableRow-head>* {
     font-weight: bold !important;
+}
+
+.admin-table-order {
+    color: #1717fa !important;
+    cursor: pointer;
+}
+
+.admin-table-order:hover {
+    color: #2a00c4;
 }
 
 @media screen and (max-width: 1200px) {
