@@ -24,7 +24,6 @@
     font-weight: bold !important;
 }
 
-
 @media screen and (max-width: 1200px) {
     .admin-table {
         grid-column: 2 / 4;
