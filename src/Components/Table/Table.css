@@ -14,12 +14,16 @@
 .admin-table-show-details {
     position: absolute;
     z-index: 999;
-    background-color: aliceblue;
-    height: 50vh;
-    width: 50vw;
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
     display: flex;
+    margin: 0 20px 0 20px;
     justify-content: space-between;
     align-items: flex-start;
+    border-radius: 1rem;
+    padding: 10px 10px 0 10px;
+    box-shadow: 0px 5px 20px 5px rgba(24, 28, 37, 0.3);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -60,6 +64,6 @@
         flex-direction: column;
         align-items: center;
         width: 93vw;
-        overflow-x: auto;
+        overflow-x: visible;
     }
 }

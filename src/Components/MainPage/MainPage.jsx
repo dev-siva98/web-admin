@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './MainPage.css'
 import { Routes, Route } from 'react-router-dom'
 import Dashboard from './Dashboard/Dashboard'

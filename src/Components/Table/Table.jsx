@@ -55,13 +55,16 @@ export default function EnhancedTable() {
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [rows, setRows] = useState([])
-    const [ShowOrder, setShowOrder] = useState(false)
+    const [showDetails, setShowDetails] = useState(false)
 
     useEffect(() => {
         axios.get('getorders').then(res => {
             setRows(res.data)
         })
-    }, [])
+        return() => {
+            setRows([])
+        }
+    }, [showDetails])
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -112,7 +115,7 @@ export default function EnhancedTable() {
     };
 
     const handleOrder = (order) => {
-        setShowOrder(order)
+        setShowDetails(order)
     }
 
     const isSelected = (orderId) => selected.indexOf(orderId) !== -1;
@@ -124,10 +127,10 @@ export default function EnhancedTable() {
     return (
         <div className="admin-table">
             {
-                ShowOrder &&
+                showDetails &&
                 <div className='admin-table-show-details'>
-                    <OrderDetails order={ShowOrder} />
-                    <button onClick={() => setShowOrder(null)}>Close</button>
+                    <OrderDetails order={showDetails} />
+                    <button onClick={() => setShowDetails(null)}>Close</button>
                 </div>
             }
             <Box sx={{ width: '100%' }}>
