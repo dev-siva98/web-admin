@@ -3,12 +3,12 @@ import './OrderDetails.css'
 import axios from '../../../axios'
 
 
-function OrderDetails({ order }) {
-    const createdAt = new Date(order.createdAt)
+function OrderDetails({ data }) {
+    const createdAt = new Date(data.createdAt)
         .toLocaleString('en-IN',
             { dateStyle: 'medium', timeStyle: 'short' })
 
-    const delivery = new Date(order.delivery)
+    const delivery = new Date(data.delivery)
         .toLocaleDateString('en-IN',
             { dateStyle: 'medium' })
     const statusData = ['Pending', 'Placed', 'Delivered']
@@ -18,7 +18,7 @@ function OrderDetails({ order }) {
             method: 'post',
             url: 'changeorderstatus',
             data: {
-                orderId: order.orderId,
+                orderId: data.orderId,
                 value: e.target.value
             }
         }).catch(err => {
@@ -29,31 +29,31 @@ function OrderDetails({ order }) {
     return (
         <div className='admin-order-details'>
             <div className="admin-order-details-item">
-                <span>Order Id </span><span>{order.orderId}</span>
+                <span>Order Id </span><span>{data.orderId}</span>
             </div>
             <div className="admin-order-details-item">
                 <span>Order Date</span><span>{createdAt}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>User Name</span><span>{order.userName}</span>
+                <span>User Name</span><span>{data.userName}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>Cart Total</span><span>&#8377; {order.cartTotal}</span>
+                <span>Cart Total</span><span>&#8377; {data.cartTotal}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>Coupon Applied</span><span>{order.couponApplied}</span>
+                <span>Coupon Applied</span><span>{data.couponApplied}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>Discount</span><span>&#8377; {order.discount}</span>
+                <span>Discount</span><span>&#8377; {data.discount}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>Shipping</span><span>&#8377; {order.shipping}</span>
+                <span>Shipping</span><span>&#8377; {data.shipping}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>Total</span><span>&#8377; {order.total}</span>
+                <span>Total</span><span>&#8377; {data.total}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>Payment Mode</span><span>{order.paymentMode}</span>
+                <span>Payment Mode</span><span>{data.paymentMode}</span>
             </div>
             <div className="admin-order-details-item">
                 <span>Order Status</span>
@@ -62,10 +62,10 @@ function OrderDetails({ order }) {
                         onChange={(e) => {
                             handleChange(e)
                         }}>
-                        <option value={order.orderStatus}>{order.orderStatus}</option>
+                        <option value={data.orderStatus}>{data.orderStatus}</option>
                         {
                             statusData.map((option, index) => {
-                                if (option === order.orderStatus) return(null)
+                                if (option === data.orderStatus) return(null)
                                 return <option value={option} key={index}>
                                     {option}
                                 </option>
@@ -75,19 +75,19 @@ function OrderDetails({ order }) {
                 </span>
             </div>
             <div className="admin-order-details-item">
-                <span>Payment Status</span><span>{order.paymentStatus}</span>
+                <span>Payment Status</span><span>{data.paymentStatus}</span>
             </div>
             <div className="admin-order-details-item">
                 <span>Delivery Date</span><span>{delivery}</span>
             </div>
             <div className="admin-order-details-item">
-                <span>Write on Cake</span><span>{order.write}</span>
+                <span>Write on Cake</span><span>{data.write}</span>
             </div>
             <div className="admin-order-details-item">
-                {/* <span>Delivery Address</span><span>{order.}</span> */}
+                {/* <span>Delivery Address</span><span>{data.}</span> */}
             </div>
             <div className="admin-order-details-item">
-                {/* <span>Products</span><span>{order.}</span> */}
+                {/* <span>Products</span><span>{data.}</span> */}
             </div>
         </div>
     )

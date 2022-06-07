@@ -1,17 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 import { UilBars, UilTimes, UilSignOutAlt } from "@iconscout/react-unicons";
 import { sidebarData } from "../../Data/Data";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { TableContext } from '../../AppContext'
 
 const Sidebar = () => {
   const [selected, setSelected] = useState(null); // to set active navigation style
   const [click, setClick] = useState(false);  // to open mobile navigation
+  const { setTableRouterData } = useContext(TableContext)
 
-  const handleClick = (index) => {
+  const handleClick = (index, data) => {
     setSelected(index)
     setClick(!click)
+    setTableRouterData(data)
   }
 
 
@@ -56,7 +59,7 @@ const Sidebar = () => {
                 >
                   <div
                     className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
-                    onClick={() => handleClick(index)}
+                    onClick={() => handleClick(index,item.data)}
                   >
                     <item.icon />
                     <span>{item.heading}</span>

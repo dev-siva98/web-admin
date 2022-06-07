@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Table.css'
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -14,7 +14,8 @@ import Switch from '@mui/material/Switch';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 import axios from '../../axios';
-import OrderDetails from './OrderDetails/OrderDetails';
+import { LoadingContext, TableContext } from '../../AppContext';
+import { tableBodyData } from '../../Data/Data'
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -56,15 +57,24 @@ export default function EnhancedTable() {
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [rows, setRows] = useState([])
     const [showDetails, setShowDetails] = useState(false)
-
+    const [tableBody, setTableBody] = useState([])
+    const { tableRouterData } = useContext(TableContext)
+    const { route, component } = tableRouterData
+    const { setLoading } = useContext(LoadingContext)
     useEffect(() => {
-        axios.get('getorders').then(res => {
+        axios.get(route).then(res => {
             setRows(res.data)
+            setLoading(false)
         })
-        return() => {
+        tableBodyData.map((data) => {
+            if(data.id === route) setTableBody(data.bodyData)
+        })
+        return () => {
             setRows([])
+            setLoading(false)
+            setTableBody([])
         }
-    }, [showDetails])
+    }, [showDetails, route])
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -118,6 +128,8 @@ export default function EnhancedTable() {
         setShowDetails(order)
     }
 
+    const Component = component
+
     const isSelected = (orderId) => selected.indexOf(orderId) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -129,7 +141,7 @@ export default function EnhancedTable() {
             {
                 showDetails &&
                 <div className='admin-table-show-details'>
-                    <OrderDetails order={showDetails} />
+                    <Component data={showDetails} />
                     <button onClick={() => setShowDetails(null)}>Close</button>
                 </div>
             }
@@ -149,6 +161,7 @@ export default function EnhancedTable() {
                                 onSelectAllClick={handleSelectAllClick}
                                 onRequestSort={handleRequestSort}
                                 rowCount={rows.length}
+                                title={route}
                             />
                             <TableBody>
                                 {/* if you don't need to support IE11, you can replace the `stableSort` call with:
@@ -167,7 +180,7 @@ export default function EnhancedTable() {
                                                 role="checkbox"
                                                 aria-checked={isItemSelected}
                                                 tabIndex={-1}
-                                                key={row.orderId}
+                                                key={index}
                                                 selected={isItemSelected}
                                             >
                                                 <TableCell padding="checkbox">
@@ -188,11 +201,11 @@ export default function EnhancedTable() {
                                                     className='admin-table-order'
                                                     onClick={() => { handleOrder(row) }}
                                                 >
-                                                    {row.orderId}
+                                                    {row[tableBody[0]]}
                                                 </TableCell>
-                                                <TableCell align="right">{row.total}</TableCell>
-                                                <TableCell align="center">{row.paymentMode}</TableCell>
-                                                <TableCell align="center">{row.orderStatus}</TableCell>
+                                                <TableCell align="right">{row[tableBody[1]]}</TableCell>
+                                                <TableCell align="center">{row[tableBody[2]]}</TableCell>
+                                                <TableCell align="center">{row[tableBody[3]]}</TableCell>
                                                 <TableCell align="left">{createdAt}</TableCell>
                                             </TableRow>
                                         );

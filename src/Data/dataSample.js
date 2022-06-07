@@ -42,3 +42,26 @@ const data = {
     razorpay_signature
         : "18d1f624e87c43be968dc53baee6a1a11a80cb98df25731a7013aa45c7ebf8d4",
 }
+
+product = {
+    "_id": { "$oid": "62596ca7cd80ce9185a1585d" },
+    "pname": "Red Velvet",
+    "weight": "500 G",
+    "id": "CC1101",
+    "proId": "CC1101",
+    "price": { "$numberInt": "300" },
+    "image": "http://res.cloudinary.com/makemycake/image/upload/v1650027684/vc4wrbtmldb5kdbnanqq.jpg",
+    "createdAt": { "$date": { "$numberLong": "1650027182000" } },
+    "__v": { "$numberInt": "0" }
+}
+
+user = {
+    "_id": { "$oid": "62514b1bcf7039d74e207f76" },
+    "name": "Siva",
+    "mobile": "9876543210",
+    "password": "$2b$10$LAistKOT03.ANwShUpZ3EuHNL6r3hcR43yo48JW57GiGTmT7LIlve",
+    "id": "9876543210",
+    "cart": [],
+    "createdAt": { "$date": { "$numberLong": "1649494811561" } },
+    "__v": { "$numberInt": "0" }
+}

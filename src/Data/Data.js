@@ -15,27 +15,47 @@ import img1 from "../imgs/img1.png";
 import img2 from "../imgs/img2.png";
 import img3 from "../imgs/img3.png";
 
+import ProductDetails from "../Components/DetailsModal/ProductDetails/ProductDetails";
+import OrderDetails from '../Components/DetailsModal/OrderDetails/OrderDetails'
+import CustomerDetails from "../Components/DetailsModal/CustomerDetails/CustomerDetails";
+
 // Sidebar Data
 export const sidebarData = [
   {
     icon: UilEstate,
     heading: "Dashboard",
-    link: ''
+    link: '',
+    data: {
+      route: 'orders',
+      component: OrderDetails
+    }
   },
   {
     icon: UilClipboardAlt,
     heading: "Orders",
-    link: 'orders'
+    link: 'orders',
+    data: {
+      route: 'orders',
+      component: OrderDetails
+    }
   },
   {
     icon: UilUsersAlt,
     heading: "Customers",
-    link: 'customers'
+    link: 'customers',
+    data: {
+      route: 'customers',
+      component: CustomerDetails
+    }
   },
   {
     icon: UilPackage,
     heading: 'Products',
-    link: 'products'
+    link: 'products',
+    data: {
+      route: 'products',
+      component: ProductDetails
+    }
   },
   {
     icon: UilChart,
@@ -206,5 +226,128 @@ export const customersCard = [
     value: "60",
     png: UilClipboardAlt,
 
+  }
+]
+
+export const tableHeaderData = [
+  {
+    id: 'orders',
+    headerData: [
+      {
+        id: 'orderId',
+        numeric: false,
+        disablePadding: true,
+        label: 'Order Id',
+      },
+      {
+        id: 'paymentMode',
+        numeric: false,
+        disablePadding: false,
+        label: 'Payment Mode',
+      },
+      {
+        id: 'orderStatus',
+        numeric: false,
+        disablePadding: false,
+        label: 'Order Status',
+      },
+      {
+        id: 'total',
+        numeric: true,
+        disablePadding: false,
+        label: 'Total',
+      },
+      {
+        id: 'createdAt',
+        numeric: false,
+        disablePadding: false,
+        label: 'Date',
+      }
+    ]
+  },
+  {
+    id: 'products',
+    headerData: [
+      {
+        id: 'proId',
+        numeric: false,
+        disablePadding: true,
+        label: 'Product Id',
+      },
+      {
+        id: 'pname',
+        numeric: false,
+        disablePadding: false,
+        label: 'Product Name',
+      },
+      {
+        id: 'Weight',
+        numeric: false,
+        disablePadding: false,
+        label: 'weight',
+      },
+      {
+        id: 'price',
+        numeric: true,
+        disablePadding: false,
+        label: 'Price',
+      },
+      {
+        id: 'createdAt',
+        numeric: false,
+        disablePadding: false,
+        label: 'Created At',
+      }
+    ]
+  },
+  {
+    id: 'customers',
+    headerData: [
+      {
+        id: 'id',
+        numeric: false,
+        disablePadding: true,
+        label: 'User Id',
+      },
+      {
+        id: 'name',
+        numeric: false,
+        disablePadding: false,
+        label: 'Name',
+      },
+      {
+        id: 'mobile',
+        numeric: false,
+        disablePadding: false,
+        label: 'Contact',
+      },
+      {
+        id: 'cartLength',
+        numeric: true,
+        disablePadding: false,
+        label: 'Items in Cart',
+      },
+      {
+        id: 'createdAt',
+        numeric: false,
+        disablePadding: false,
+        label: 'Created At',
+      }
+    ]
+  }
+]
+
+export const tableBodyData = [
+  {
+    id: 'orders',
+    bodyData: ['orderId', 'paymentMode', 'orderStatus', 'total']
+  },
+  {
+    id: 'products',
+    bodyData: ['proId', 'pname', 'weight', 'price']
+  },
+  {
+    id: 'customers',
+    bodyData: ['id', 'name', 'mobile', 'cartLength']
   }
 ]

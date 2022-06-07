@@ -7,46 +7,21 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
+import { tableHeaderData } from '../../Data/Data'
 
 export default function EnhancedTableHead(props) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, title } =
         props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
-
-    const headCells = [
-        {
-            id: 'orderId',
-            numeric: false,
-            disablePadding: true,
-            label: 'Order Id',
-        },
-        {
-            id: 'total',
-            numeric: true,
-            disablePadding: false,
-            label: 'Total',
-        },
-        {
-            id: 'paymentMode',
-            numeric: false,
-            disablePadding: false,
-            label: 'Payment Mode',
-        },
-        {
-            id: 'orderStatus',
-            numeric: false,
-            disablePadding: false,
-            label: 'Order Status',
-        },
-        {
-            id: 'createdAt',
-            numeric: false,
-            disablePadding: false,
-            label: 'Date',
-        },
-    ];
+    let headCells=[]
+    tableHeaderData.map((data) => {
+        if(data.id === title){
+            headCells = data.headerData
+        }
+        return headCells
+    })
 
     return (
         <TableHead>
