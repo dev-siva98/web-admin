@@ -1,0 +1,10 @@
+.admin-loader {
+    display: grid;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+}
+
+.admin-loader-container {
+    margin-top: 10px;
+}

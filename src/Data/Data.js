@@ -56,11 +56,6 @@ export const sidebarData = [
       route: 'products',
       component: ProductDetails
     }
-  },
-  {
-    icon: UilChart,
-    heading: 'Analytics',
-    link: 'analytics'
   }
 ];
 

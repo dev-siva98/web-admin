@@ -7,7 +7,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { LoadingContext, TableContext } from './AppContext'
 import { useState } from 'react';
 import OrderDetails from './Components/DetailsModal/OrderDetails/OrderDetails';
-import Loader from './Components/Loader/Loader';
 
 function App() {
 
@@ -22,21 +21,18 @@ function App() {
 
   return (
     <div className="App">
-      {
-        loading ? <Loader /> :
-          <BrowserRouter>
-            <LoadingContext.Provider value={loader}>
-              <TableContext.Provider value={table}>
-                <div className="AppGlass">
-                  <Sidebar />
-                  <MainPage />
-                  <Table />
-                  <RightSide />
-                </div>
-              </TableContext.Provider>
-            </LoadingContext.Provider>
-          </BrowserRouter>
-      }
+      <BrowserRouter>
+        <LoadingContext.Provider value={loader}>
+          <TableContext.Provider value={table}>
+            <div className="AppGlass">
+              <Sidebar />
+              <MainPage />
+              <Table />
+              <RightSide />
+            </div>
+          </TableContext.Provider>
+        </LoadingContext.Provider>
+      </BrowserRouter>
     </div >
   );
 }

@@ -16,6 +16,7 @@ import EnhancedTableToolbar from './EnhancedTableToolbar';
 import axios from '../../axios';
 import { LoadingContext, TableContext } from '../../AppContext';
 import { tableBodyData } from '../../Data/Data'
+import Load from '../Loader/Load'
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -60,15 +61,21 @@ export default function EnhancedTable() {
     const [tableBody, setTableBody] = useState([])
     const { tableRouterData } = useContext(TableContext)
     const { route, component } = tableRouterData
-    const { setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext)
     useEffect(() => {
+        // setLoading(true)
+        let startTime = new Date().getTime()
         axios.get(route).then(res => {
             setRows(res.data)
-            setLoading(false)
             console.log(res.data)
-        })
-        tableBodyData.forEach((data) => {
-            if (data.id === route) setTableBody(data.bodyData)
+            tableBodyData.forEach((data) => {
+                if (data.id === route) setTableBody(data.bodyData)
+            })
+            let stopTime = new Date().getTime()
+            console.log(stopTime, startTime, stopTime - startTime)
+            setLoading(false)
+        }).catch(err => {
+            alert(err + "")
         })
         return () => {
             setRows([])
@@ -77,15 +84,17 @@ export default function EnhancedTable() {
         }
     }, [showDetails, route])
 
+
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
+    console.log('render')
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.orderId);
+            const newSelecteds = rows.forEach((n) => n.orderId);
             setSelected(newSelecteds);
             return;
         }
@@ -149,7 +158,7 @@ export default function EnhancedTable() {
             <Box sx={{ width: '100%' }}>
                 <Paper sx={{ mb: 2 }}>
                     <EnhancedTableToolbar numSelected={selected.length} />
-                    <TableContainer sx={{ overflowX: 'auto' }}>
+                    <TableContainer sx={{ overflowX: 'auto', minHeight: '120px' }}>
                         <Table
                             sx={{ minWidth: '100%', width: 'max-content' }}
                             aria-labelledby="tableTitle"
@@ -164,66 +173,69 @@ export default function EnhancedTable() {
                                 rowCount={rows.length}
                                 title={route}
                             />
-                            <TableBody>
-                                {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+                            {
+                                loading ? <Load /> :
+                                    <TableBody>
+                                        {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-                                {stableSort(rows, getComparator(order, orderBy))
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((row, index) => {
-                                        const isItemSelected = isSelected(row.orderId);
-                                        const labelId = `enhanced-table-checkbox-${index}`;
-                                        const createdAt = new Date(row.createdAt)
-                                            .toLocaleString('en-IN',
-                                                { dateStyle: 'short', timeStyle: 'short' })
-                                        return (
+                                        {stableSort(rows, getComparator(order, orderBy))
+                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            .map((row, index) => {
+                                                const isItemSelected = isSelected(row.orderId);
+                                                const labelId = `enhanced-table-checkbox-${index}`;
+                                                const createdAt = new Date(row.createdAt)
+                                                    .toLocaleString('en-IN',
+                                                        { dateStyle: 'short', timeStyle: 'short' })
+                                                return (
+                                                    <TableRow
+                                                        hover
+                                                        role="checkbox"
+                                                        aria-checked={isItemSelected}
+                                                        tabIndex={-1}
+                                                        key={index}
+                                                        selected={isItemSelected}
+                                                    >
+                                                        <TableCell padding="checkbox">
+                                                            <Checkbox
+                                                                onClick={(event) => handleClick(event, row.orderId)}
+                                                                color="primary"
+                                                                checked={isItemSelected}
+                                                                inputProps={{
+                                                                    'aria-labelledby': labelId,
+                                                                }}
+                                                            />
+                                                        </TableCell>
+                                                        <TableCell
+                                                            component="th"
+                                                            id={labelId}
+                                                            scope="row"
+                                                            padding="none"
+                                                            className='admin-table-order'
+                                                            onClick={() => { handleOrder(row) }}
+                                                        >
+                                                            {row[tableBody[0]]}
+                                                        </TableCell>
+                                                        <TableCell align="left">{row[tableBody[1]]}</TableCell>
+                                                        <TableCell align="left">{row[tableBody[2]]}</TableCell>
+                                                        {
+                                                            route !== 'customers' &&
+                                                            <TableCell align="left">{row[tableBody[3]]}</TableCell>
+                                                        }
+                                                        <TableCell align="left">{createdAt}</TableCell>
+                                                    </TableRow>
+                                                );
+                                            })}
+                                        {emptyRows > 0 && (
                                             <TableRow
-                                                hover
-                                                role="checkbox"
-                                                aria-checked={isItemSelected}
-                                                tabIndex={-1}
-                                                key={index}
-                                                selected={isItemSelected}
+                                                style={{
+                                                    height: (dense ? 33 : 53) * emptyRows,
+                                                }}
                                             >
-                                                <TableCell padding="checkbox">
-                                                    <Checkbox
-                                                        onClick={(event) => handleClick(event, row.orderId)}
-                                                        color="primary"
-                                                        checked={isItemSelected}
-                                                        inputProps={{
-                                                            'aria-labelledby': labelId,
-                                                        }}
-                                                    />
-                                                </TableCell>
-                                                <TableCell
-                                                    component="th"
-                                                    id={labelId}
-                                                    scope="row"
-                                                    padding="none"
-                                                    className='admin-table-order'
-                                                    onClick={() => { handleOrder(row) }}
-                                                >
-                                                    {row[tableBody[0]]}
-                                                </TableCell>
-                                                <TableCell align="left">{row[tableBody[1]]}</TableCell>
-                                                <TableCell align="left">{row[tableBody[2]]}</TableCell>
-                                                {
-                                                    route !== 'customers' &&
-                                                    <TableCell align="left">{row[tableBody[3]]}</TableCell>
-                                                }
-                                                <TableCell align="left">{createdAt}</TableCell>
+                                                <TableCell colSpan={6} />
                                             </TableRow>
-                                        );
-                                    })}
-                                {emptyRows > 0 && (
-                                    <TableRow
-                                        style={{
-                                            height: (dense ? 33 : 53) * emptyRows,
-                                        }}
-                                    >
-                                        <TableCell colSpan={6} />
-                                    </TableRow>
-                                )}
-                            </TableBody>
+                                        )}
+                                    </TableBody>
+                            }
                         </Table>
                     </TableContainer>
                     <TablePagination

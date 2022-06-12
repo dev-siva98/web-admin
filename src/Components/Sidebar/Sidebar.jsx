@@ -17,6 +17,10 @@ const Sidebar = () => {
     setTableRouterData(data)
   }
 
+  const handleSignout = () => {
+    setClick(!click)
+  }
+
 
   const ref = useRef()
 
@@ -59,7 +63,7 @@ const Sidebar = () => {
                 >
                   <div
                     className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
-                    onClick={() => handleClick(index,item.data)}
+                    onClick={() => handleClick(index, item.data)}
                   >
                     <item.icon />
                     <span>{item.heading}</span>
@@ -70,7 +74,7 @@ const Sidebar = () => {
           }
           <div
             className='admin-sidebar-menu-item'
-            onClick={() => handleClick(null)}
+            onClick={() => handleSignout()}
           >
             <UilSignOutAlt />
             <span>Signout</span>

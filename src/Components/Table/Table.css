@@ -1,4 +1,5 @@
 .admin-table {
+    position: relative;
     grid-row: 2 / -1;
     grid-column: 2 / 3;
     margin-top: 2rem;
