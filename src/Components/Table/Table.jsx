@@ -65,9 +65,10 @@ export default function EnhancedTable() {
         axios.get(route).then(res => {
             setRows(res.data)
             setLoading(false)
+            console.log(res.data)
         })
-        tableBodyData.map((data) => {
-            if(data.id === route) setTableBody(data.bodyData)
+        tableBodyData.forEach((data) => {
+            if (data.id === route) setTableBody(data.bodyData)
         })
         return () => {
             setRows([])
@@ -150,7 +151,7 @@ export default function EnhancedTable() {
                     <EnhancedTableToolbar numSelected={selected.length} />
                     <TableContainer sx={{ overflowX: 'auto' }}>
                         <Table
-                            sx={{ width: 'max-content' }}
+                            sx={{ minWidth: '100%', width: 'max-content' }}
                             aria-labelledby="tableTitle"
                             size={dense ? 'small' : 'medium'}
                         >
@@ -203,9 +204,12 @@ export default function EnhancedTable() {
                                                 >
                                                     {row[tableBody[0]]}
                                                 </TableCell>
-                                                <TableCell align="right">{row[tableBody[1]]}</TableCell>
-                                                <TableCell align="center">{row[tableBody[2]]}</TableCell>
-                                                <TableCell align="center">{row[tableBody[3]]}</TableCell>
+                                                <TableCell align="left">{row[tableBody[1]]}</TableCell>
+                                                <TableCell align="left">{row[tableBody[2]]}</TableCell>
+                                                {
+                                                    route !== 'customers' &&
+                                                    <TableCell align="left">{row[tableBody[3]]}</TableCell>
+                                                }
                                                 <TableCell align="left">{createdAt}</TableCell>
                                             </TableRow>
                                         );

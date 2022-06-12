@@ -22,6 +22,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
+  height: max-content;
 }
 
 .AppGlass {
@@ -32,7 +33,7 @@
   width: 97%;
   background: var(--glass);
   padding-bottom: 1rem;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 

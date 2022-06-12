@@ -17,7 +17,7 @@ function CustomerDetails({ data }) {
                 <span>User Name</span><span>{data.name}</span>
             </div>
             <div className="admin-cutomer-details-item">
-                <span>Contact</span><span>&#8377; {data.mobile}</span>
+                <span>Contact</span><span>{data.mobile}</span>
             </div>
             <div className="admin-cutomer-details-item">
                 <span>Created At</span><span>{createdAt}</span>

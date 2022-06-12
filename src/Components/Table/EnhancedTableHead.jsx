@@ -16,7 +16,7 @@ export default function EnhancedTableHead(props) {
         onRequestSort(event, property);
     };
     let headCells=[]
-    tableHeaderData.map((data) => {
+    tableHeaderData.forEach((data) => {
         if(data.id === title){
             headCells = data.headerData
         }
@@ -40,7 +40,7 @@ export default function EnhancedTableHead(props) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        align='left'
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >

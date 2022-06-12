@@ -7,20 +7,20 @@ function ProductDetails({ data }) {
             { dateStyle: 'medium', timeStyle: 'short' })
 
     return (
-        <div className='admin-products-details'>
-            <div className="admin-products-details-item">
+        <div className='admin-product-details'>
+            <div className="admin-product-details-item">
                 <span>Product Id </span><span>{data.proId}</span>
             </div>
-            <div className="admin-products-details-item">
+            <div className="admin-product-details-item">
                 <span>Product Name</span><span>{data.pname}</span>
             </div>
-            <div className="admin-products-details-item">
+            <div className="admin-product-details-item">
                 <span>Weight</span><span>{data.weight}</span>
             </div>
-            <div className="admin-products-details-item">
+            <div className="admin-product-details-item">
                 <span>Price</span><span>&#8377; {data.cartTotal}</span>
             </div>
-            <div className="admin-products-details-item">
+            <div className="admin-product-details-item">
                 <span>Created At</span><span>{createdAt}</span>
             </div>
         </div>

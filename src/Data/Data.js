@@ -322,12 +322,6 @@ export const tableHeaderData = [
         label: 'Contact',
       },
       {
-        id: 'cartLength',
-        numeric: true,
-        disablePadding: false,
-        label: 'Items in Cart',
-      },
-      {
         id: 'createdAt',
         numeric: false,
         disablePadding: false,

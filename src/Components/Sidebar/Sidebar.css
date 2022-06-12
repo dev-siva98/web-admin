@@ -84,6 +84,7 @@
 @media screen and (max-width: 768px) {
   .admin-sidebar {
     position: sticky;
+    top: 0;
     grid-row: 1 / 2;
     grid-column: 1 / -1;
     background: #ffe0e0;
