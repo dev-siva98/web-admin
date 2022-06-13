@@ -8,18 +8,18 @@ function CustomerDetails({ data }) {
             { dateStyle: 'medium', timeStyle: 'short' })
 
     return (
-        <div className='admin-cutomer-details'>
-            <div className="admin-cutomer-details-item">
+        <div className='admin-customer-details'>
+            <div className="admin-customer-details-item">
                 <span>User Id </span><span>{data.id}</span>
             </div>
             
-            <div className="admin-cutomer-details-item">
+            <div className="admin-customer-details-item">
                 <span>User Name</span><span>{data.name}</span>
             </div>
-            <div className="admin-cutomer-details-item">
+            <div className="admin-customer-details-item">
                 <span>Contact</span><span>{data.mobile}</span>
             </div>
-            <div className="admin-cutomer-details-item">
+            <div className="admin-customer-details-item">
                 <span>Created At</span><span>{createdAt}</span>
             </div>
             

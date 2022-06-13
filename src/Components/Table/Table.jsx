@@ -59,30 +59,29 @@ export default function EnhancedTable() {
     const [rows, setRows] = useState([])
     const [showDetails, setShowDetails] = useState(false)
     const [tableBody, setTableBody] = useState([])
+    const [closeButton, setCloseButton] = useState(false)
     const { tableRouterData } = useContext(TableContext)
     const { route, component } = tableRouterData
     const { loading, setLoading } = useContext(LoadingContext)
     useEffect(() => {
-        // setLoading(true)
-        let startTime = new Date().getTime()
-        axios.get(route).then(res => {
-            setRows(res.data)
-            console.log(res.data)
-            tableBodyData.forEach((data) => {
-                if (data.id === route) setTableBody(data.bodyData)
+        setLoading(true)
+        axios.get(route)
+            .then(res => {
+                setRows(res.data)
+                console.log(res.data)
+                tableBodyData.forEach((data) => {
+                    if (data.id === route) setTableBody(data.bodyData)
+                })
+                setLoading(false)
+            }).catch(err => {
+                alert(err + "")
             })
-            let stopTime = new Date().getTime()
-            console.log(stopTime, startTime, stopTime - startTime)
-            setLoading(false)
-        }).catch(err => {
-            alert(err + "")
-        })
         return () => {
             setRows([])
             setLoading(false)
             setTableBody([])
         }
-    }, [showDetails, route])
+    }, [closeButton, route])
 
 
     const handleRequestSort = (event, property) => {
@@ -90,7 +89,6 @@ export default function EnhancedTable() {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
-    console.log('render')
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
@@ -138,6 +136,11 @@ export default function EnhancedTable() {
         setShowDetails(order)
     }
 
+    const handleClose = () => {
+        setShowDetails(null)
+        setCloseButton(!closeButton)
+    }
+
     const Component = component
 
     const isSelected = (orderId) => selected.indexOf(orderId) !== -1;
@@ -152,29 +155,32 @@ export default function EnhancedTable() {
                 showDetails &&
                 <div className='admin-table-show-details'>
                     <Component data={showDetails} />
-                    <button onClick={() => setShowDetails(null)}>Close</button>
+                    <button onClick={handleClose}>Close</button>
                 </div>
             }
             <Box sx={{ width: '100%' }}>
                 <Paper sx={{ mb: 2 }}>
-                    <EnhancedTableToolbar numSelected={selected.length} />
+                    <EnhancedTableToolbar
+                        numSelected={selected.length}
+                        title={route} />
                     <TableContainer sx={{ overflowX: 'auto', minHeight: '120px' }}>
-                        <Table
-                            sx={{ minWidth: '100%', width: 'max-content' }}
-                            aria-labelledby="tableTitle"
-                            size={dense ? 'small' : 'medium'}
-                        >
-                            <EnhancedTableHead
-                                numSelected={selected.length}
-                                order={order}
-                                orderBy={orderBy}
-                                onSelectAllClick={handleSelectAllClick}
-                                onRequestSort={handleRequestSort}
-                                rowCount={rows.length}
-                                title={route}
-                            />
-                            {
-                                loading ? <Load /> :
+                        {
+                            loading ? <Load /> :
+                                <Table
+                                    sx={{ minWidth: '100%', width: 'max-content' }}
+                                    aria-labelledby="tableTitle"
+                                    size={dense ? 'small' : 'medium'}
+                                >
+                                    <EnhancedTableHead
+                                        numSelected={selected.length}
+                                        order={order}
+                                        orderBy={orderBy}
+                                        onSelectAllClick={handleSelectAllClick}
+                                        onRequestSort={handleRequestSort}
+                                        rowCount={rows.length}
+                                        title={route}
+                                    />
+
                                     <TableBody>
                                         {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
@@ -235,8 +241,8 @@ export default function EnhancedTable() {
                                             </TableRow>
                                         )}
                                     </TableBody>
-                            }
-                        </Table>
+                                </Table>
+                        }
                     </TableContainer>
                     <TablePagination
                         rowsPerPageOptions={[5, 10, 25]}

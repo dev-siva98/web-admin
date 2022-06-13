@@ -8,8 +8,8 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-export default function EnhancedTableToolbar(props){
-    const { numSelected } = props;
+export default function EnhancedTableToolbar(props) {
+    const { numSelected, title } = props;
 
     return (
         <Toolbar
@@ -33,12 +33,12 @@ export default function EnhancedTableToolbar(props){
                 </Typography>
             ) : (
                 <Typography
-                    sx={{ flex: '1 1 100%' }}
+                    sx={{ flex: '1 1 100%',fontWeight: '700', textTransform: 'capitalize' }}
                     variant="h6"
                     id="tableTitle"
                     component="div"
                 >
-                    Orders
+                    {title}
                 </Typography>
             )}
 

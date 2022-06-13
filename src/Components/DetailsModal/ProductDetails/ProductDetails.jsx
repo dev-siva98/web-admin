@@ -18,7 +18,7 @@ function ProductDetails({ data }) {
                 <span>Weight</span><span>{data.weight}</span>
             </div>
             <div className="admin-product-details-item">
-                <span>Price</span><span>&#8377; {data.cartTotal}</span>
+                <span>Price</span><span>&#8377; {data.price}</span>
             </div>
             <div className="admin-product-details-item">
                 <span>Created At</span><span>{createdAt}</span>
