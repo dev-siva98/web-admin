@@ -14,7 +14,7 @@ function OrderDetails({ data, handleShow }) {
     const delivery = new Date(data.delivery)
         .toLocaleDateString('en-IN',
             { dateStyle: 'medium' })
-    const statusData = ['Pending', 'Placed', 'Delivered']
+    const statusData = ['Pending','Placed', 'Delivered', 'Failed']
 
     const handleChange = (e) => {
         axios({

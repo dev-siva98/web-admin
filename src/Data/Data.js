@@ -15,7 +15,7 @@ import img1 from "../imgs/img1.png";
 import img2 from "../imgs/img2.png";
 import img3 from "../imgs/img3.png";
 
-import ProductDetails from "../Components/DetailsModal/ProductDetails/ProductDetails";
+import ProductDetails from "../Components/DetailsModal/ProductDetails/ProductDet";
 import OrderDetails from '../Components/DetailsModal/OrderDetails/OrderDetails'
 import CustomerDetails from "../Components/DetailsModal/CustomerDetails/CustomerDetails";
 

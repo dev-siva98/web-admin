@@ -1,7 +1,6 @@
 import React from 'react'
 import './ProductDetails.css'
-import { Backdrop } from '@mui/material'
-import { Button } from '@mui/material'
+import { Backdrop, Button } from '@mui/material'
 function ProductDetails({ data, handleShow }) {
     const createdAt = new Date(data.createdAt)
         .toLocaleString('en-IN',
