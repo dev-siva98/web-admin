@@ -1,8 +1,18 @@
 .admin-order-details {
+    background-color: #fff;
+    border-radius: 1rem;
+}
+
+.admin-order-details-continer {
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.admin-order-details-button {
+    position: absolute !important;
+    right: 0;
 }
 
 .admin-order-details-item {

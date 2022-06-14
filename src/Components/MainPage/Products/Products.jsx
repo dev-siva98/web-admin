@@ -3,7 +3,7 @@ import './Products.css'
 import { productsCard } from '../../../Data/Data'
 import { UilClipboardAlt } from '@iconscout/react-unicons'
 import Card from '../Card/Card'
-import AddProduct from './AddProducts/AddProduct'
+import AddProduct from './AddProduct/AddProduct'
 
 function Products() {
 

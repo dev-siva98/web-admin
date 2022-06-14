@@ -70,6 +70,13 @@ function AddProduct({ handleClick }) {
             });
     }
 
+    const handleChage = (event) => {
+        setImage(event.target.files[0])
+        setChange(true)
+        setProgress(0)
+        setUploading(false)
+    }
+
     return (
         <Backdrop
             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -112,17 +119,15 @@ function AddProduct({ handleClick }) {
                             </div>
                             <div className="form-group">
                                 <label className='form-control-label' htmlFor="image">Image<span className="text-danger">*</span></label>
-                                <input type="file" name='image' className="form-control" onChange={(event) => {
-                                    setImage(event.target.files[0])
-                                    setChange(true)
-                                    setProgress(0)
-                                    setUploading(false)
-                                }} />
-                                <div className='btn product-upload-button'
+                                <input type="file" name='image' className="form-control" onChange={(event) => handleChage(event)} />
+                                <button
+                                    type='button'
+                                    disabled={!change}
+                                    className='btn product-upload-button'
                                     style={{ backgroundColor: `${change ? 'blue' : '#00a623'}` }}
-                                    onClick={progress === 0 ? uploadImage : undefined} >
+                                    onClick={progress === 0 && uploadImage} >
                                     {change ? `${uploading ? 'Uploading' : 'Upload'}` : "Done"}
-                                </div>
+                                </button>
                                 <div className="upload-progress">
                                     <Line percent={progress}
                                         trailColor={`rgba(188, 188, 188, ${progress / 100})`}

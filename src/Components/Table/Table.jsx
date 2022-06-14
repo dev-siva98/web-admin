@@ -57,9 +57,9 @@ export default function EnhancedTable() {
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [rows, setRows] = useState([])
-    const [showDetails, setShowDetails] = useState(false)
+    const [modalDetails, setModalDetails] = useState(null)
     const [tableBody, setTableBody] = useState([])
-    const [closeButton, setCloseButton] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const { tableRouterData } = useContext(TableContext)
     const { route, component } = tableRouterData
     const { loading, setLoading } = useContext(LoadingContext)
@@ -81,7 +81,7 @@ export default function EnhancedTable() {
             setLoading(false)
             setTableBody([])
         }
-    }, [closeButton, route])
+    }, [showModal, route])
 
 
     const handleRequestSort = (event, property) => {
@@ -133,12 +133,13 @@ export default function EnhancedTable() {
     };
 
     const handleOrder = (order) => {
-        setShowDetails(order)
+        setModalDetails(order)
+        setShowModal(true)
     }
 
-    const handleClose = () => {
-        setShowDetails(null)
-        setCloseButton(!closeButton)
+    const handleShow = () => {
+        setModalDetails(null)
+        setShowModal(!showModal)
     }
 
     const Component = component
@@ -152,11 +153,8 @@ export default function EnhancedTable() {
     return (
         <div className="admin-table">
             {
-                showDetails &&
-                <div className='admin-table-show-details'>
-                    <Component data={showDetails} />
-                    <button onClick={handleClose}>Close</button>
-                </div>
+                showModal &&
+                <Component data={modalDetails} handleShow={handleShow} />
             }
             <Box sx={{ width: '100%' }}>
                 <Paper sx={{ mb: 2 }}>
