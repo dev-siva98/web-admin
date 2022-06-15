@@ -5,16 +5,17 @@ import { useForm } from 'react-hook-form'
 import Axios from 'axios'
 import { Line } from 'rc-progress'
 import ReactLoading from 'react-loading'
-import { Backdrop, Button } from '@mui/material'
+import { Backdrop, Button, Tooltip } from '@mui/material'
+import { Delete } from '@mui/icons-material'
 
 
 function ProductDet({ data, handleShow }) {
 
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors, isDirty } } = useForm();
     const [product, setProduct] = useState()
     const [image, setImage] = useState()
-    const [imageDetails, setImageDetails] = useState([])
+    const [imageDetails, setImageDetails] = useState(null)
     const [change, setChange] = useState(true)
     const [progress, setProgress] = useState(0)
     const [uploading, setUploading] = useState(false)
@@ -23,7 +24,6 @@ function ProductDet({ data, handleShow }) {
     const productWeight = ['500 G', '1 KG', '2 KG']
 
     useEffect(() => {
-        console.log('use')
         axios.get(`getproduct/${data.proId}`)
             .then(res => {
                 setProduct(res.data)
@@ -31,6 +31,7 @@ function ProductDet({ data, handleShow }) {
             })
             .catch(err => {
                 alert(err + '')
+                handleShow()
             })
         return () => {
             setProduct([])
@@ -48,7 +49,6 @@ function ProductDet({ data, handleShow }) {
 
     const uploadImage = () => {
         setUploading(true)
-        console.log(image)
         const formData = new FormData();
         formData.append("file", image);
         formData.append("upload_preset", "l68cm4ir");
@@ -57,8 +57,8 @@ function ProductDet({ data, handleShow }) {
             .then((res) => {
                 setImageDetails(res.data)
                 setChange(false)
-
-            }).catch((err) => {
+            })
+            .catch((err) => {
                 alert("Error uploading")
                 console.log(err)
                 setProgress(0)
@@ -67,17 +67,17 @@ function ProductDet({ data, handleShow }) {
 
     }
 
-    const submitForm = (data) => {
+    const submitForm = (product) => {
         setLoading(true)
-        data.image = imageDetails.url
+        product.image = imageDetails?.url //leave the field if image is not uploaded
         axios({
             method: 'post',
-            url: '/addproduct',
-            data: data
+            url: `/editproduct/${data.proId}`,
+            data: product
         })
-            .then((response) => {
-                console.log(response);
-                alert(data.pname + " - Added")
+            .then((res) => {
+                console.log(res.data);
+                setLoading(false)
                 handleShow()
             })
             .catch((error) => {
@@ -93,7 +93,23 @@ function ProductDet({ data, handleShow }) {
         setProgress(0)
         setUploading(false)
     }
-    const productId = data.proId.split(/(\d+)/)[1] //split string, second element is number
+
+    const handleDelete = () => {
+        const confirmBox = window.confirm(
+            "Confirm Delete ?"
+        )
+        confirmBox && axios.delete(`deleteproduct/${product.proId}`)
+            .then(res => {
+                alert(res.data.id, ' - deleted')
+                handleShow()
+            })
+            .catch(err => {
+                alert(err + '')
+            })
+    }
+
+    console.log(isDirty)
+
     return (
         <Backdrop
             sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, overflowY: 'auto' }}
@@ -101,22 +117,36 @@ function ProductDet({ data, handleShow }) {
         >
             <div className='admin-edit-product-section'>
                 <div className="admin-edit-product-container">
-                    <Button
-                        className='admin-addproduct-close-button'
-                        onClick={handleShow}
-                    >
-                        Close
-                    </Button>
+                    <div className="admin-edit-product-buttons">
+                        <Tooltip title='Delete Product'>
+                            <Button
+                                className='admin-edit-product-delete-button'
+                                onClick={handleDelete}
+                            >
+                                <Delete />
+                            </Button>
+                        </Tooltip>
+                        <Button
+                            className='admin-edit-product-close-button'
+                            onClick={handleShow}
+                        >
+                            Close
+                        </Button>
+                    </div>
                     <div className="admin-edit-product-main">
                         <h2>Edit Product</h2>
                         <form id="edit-product" encType="multipart/form-data" onSubmit={handleSubmit(submitForm)} >
                             <div className="edit-form-group">
-                                <label className='edit-form-control-label' htmlFor="pname">Product name<span className="text-danger">*</span></label>
+                                <label className='edit-form-control-label' htmlFor="proId">Product-code</label>
+                                <input type="text" disabled className="edit-form-control" defaultValue={data.proId} />
+                            </div>
+                            <div className="edit-form-group">
+                                <label className='edit-form-control-label' htmlFor="pname">Product name<span className="text-danger"> *</span></label>
                                 <input type="text" className="edit-form-control" {...register("pname", { required: true })} defaultValue={data.pname} />
                                 {errors.pname && <p>Product name is required</p>}
                             </div>
                             <div className="edit-form-group">
-                                <label className='edit-form-control-label' htmlFor="weight">Weight<span className="text-danger">*</span></label>
+                                <label className='edit-form-control-label' htmlFor="weight">Weight<span className="text-danger"> *</span></label>
                                 <select type="select" className="edit-form-control select-checkbox" {...register("weight", { required: true })}  >
                                     <option value={data.weight}>{data.weight}</option>
                                     {
@@ -129,21 +159,16 @@ function ProductDet({ data, handleShow }) {
                                 {errors.weight && <p>Weight is required</p>}
                             </div>
                             <div className="edit-form-group">
-                                <label className='edit-form-control-label' htmlFor="proId">Product-code<span className="text-danger">*</span></label>
-                                <input type="number" className="edit-form-control" {...register("proId", { required: true })} defaultValue={productId} />
-                                {errors.proId && <p>Product code is required</p>}
-                            </div>
-                            <div className="edit-form-group">
-                                <label className='edit-form-control-label' htmlFor="price">Price<span className="text-danger">*</span></label>
+                                <label className='edit-form-control-label' htmlFor="price">Price<span className="text-danger"> *</span></label>
                                 <input type="number" className="edit-form-control" {...register("price", { required: true })} defaultValue={data.price} />
                                 {errors.price && <p>Price is required</p>}
                             </div>
                             <div className="edit-form-group">
-                                <label className='edit-form-control-label' htmlFor="image">Image<span className="text-danger">*</span></label>
-                                <input type="file" name='image' className="edit-form-control input-file" onChange={(event) => handleChage(event)} />
+                                <label className='edit-form-control-label' htmlFor="image">Image<span className="text-danger"> *</span></label>
+                                <input type="file" accept='jpg' name='image' className="edit-form-control input-file" onChange={(event) => handleChage(event)} />
                                 <button
                                     type='button'
-                                    disabled={!change || uploading}
+                                    disabled={!change || uploading }
                                     className='btn edit-product-upload-button'
                                     style={{ backgroundColor: `${change ? 'blue' : '#00a623'}` }}
                                     onClick={uploadImage} >
@@ -158,12 +183,12 @@ function ProductDet({ data, handleShow }) {
                                     <h4 style={{ color: `${progress === 100 ? '#37cc4e' : `rgba(62, 152, 199, ${progress / 100})`}` }} >{progress}%</h4>
                                 </div>
                                 <div className="admin-edit-product-image">
-                                    <img src={product?.image} alt="1" />
+                                    <img src={imageDetails ? imageDetails.url : product?.image} alt="product" />
                                 </div>
                             </div>
                             <div className="edit-form-group edit-submit-button-container">
                                 <button type="submit" className="btn product-edit-submit-button"
-                                    disabled={change && !loading} >
+                                    disabled={!loading && !isDirty && !imageDetails} >
                                     {loading ? <ReactLoading type={'bars'} color={'#fff'} /> : 'SAVE'}</button>
                             </div>
                         </form>

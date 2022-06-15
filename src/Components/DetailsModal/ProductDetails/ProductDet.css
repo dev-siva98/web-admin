@@ -9,9 +9,18 @@
     padding: 30px 20px;
 }
 
-.admin-addproduct-close-button {
-    position: absolute !important;
+.admin-edit-product-buttons {
+    position: absolute;
     right: 20px;
+}
+
+.admin-edit-product-delete-button {
+    border: 1px solid #eb0a0a !important;
+    margin-right: 15px !important;
+    color: #eb0a0a !important;
+}
+
+.admin-edit-product-close-button {
     border: 1px solid #0d6efd !important;
 }
 
@@ -152,8 +161,16 @@
         width: 80vw;
     }
 
-    .admin-addproduct-close-button {
+    .admin-edit-product-buttons {
         right: 0;
+    }
+    
+    .admin-edit-product-delete-button {
+        border: none !important;
+        margin-right: 0 !important;
+    }
+
+    .admin-edit-product-close-button {
         border: 0 !important;
     }
 
