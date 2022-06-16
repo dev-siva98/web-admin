@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Updates.css";
-import { updatesData } from "../../../Data/Data";
+import axios from "../../../axios";
+import TimeAgo from 'react-timeago';
+
 
 const Updates = () => {
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    axios.get('orders').then(res => {
+      console.log(res.data)
+      setOrders(res.data)
+    }).catch(err => {
+      alert('' + err)
+    })
+  }, [])
+
   return (
     <div className="admin-updates">
-      {updatesData.map((update, index) => {
+      {orders?.map((order, index) => {
         return (
           <div className="admin-updates-item"
             key={index}>
-            <img src={update.img} alt="profile" />
+            <img src={`https://ui-avatars.com/api/?name=${order.userName}&length=1&rounded=true&background=random&bold=true`} alt="profile" />
             <div className="admin-updates-item-notification">
               <div style={{ marginBottom: '0.5rem' }}>
-                <span>{update.name}</span>
-                <span> {update.noti}</span>
+                <span>{order.userName}</span>
+                <span> has ordered {order.products[0].pname}</span>
               </div>
-              <span>{update.time}</span>
+              <span>
+                <TimeAgo
+                  date={order.createdAt} />
+              </span>
             </div>
           </div>
         );
