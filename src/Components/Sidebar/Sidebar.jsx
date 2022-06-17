@@ -11,10 +11,9 @@ const Sidebar = () => {
   const [click, setClick] = useState(false);  // to open mobile navigation
   const { setTableRouterData } = useContext(TableContext)
 
-  const handleClick = (index, data) => {
+  const handleClick = (index) => {
     setSelected(index)
     setClick(!click)
-    setTableRouterData(data)
   }
 
   const handleSignout = () => {
@@ -63,7 +62,7 @@ const Sidebar = () => {
                 >
                   <div
                     className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
-                    onClick={() => handleClick(index, item.data)}
+                    onClick={() => handleClick(index)}
                   >
                     <item.icon />
                     <span>{item.heading}</span>

@@ -4,7 +4,6 @@ import {
   UilClipboardAlt,
   UilUsersAlt,
   UilPackage,
-  UilChart,
 } from "@iconscout/react-unicons";
 
 // Analytics Cards imports
@@ -15,47 +14,27 @@ import img1 from "../imgs/img1.png";
 import img2 from "../imgs/img2.png";
 import img3 from "../imgs/img3.png";
 
-import ProductDetails from "../Components/DetailsModal/ProductDetails/ProductDet";
-import OrderDetails from '../Components/DetailsModal/OrderDetails/OrderDetails'
-import CustomerDetails from "../Components/DetailsModal/CustomerDetails/CustomerDetails";
-
 // Sidebar Data
 export const sidebarData = [
   {
     icon: UilEstate,
     heading: "Dashboard",
-    link: '',
-    data: {
-      route: 'orders',
-      component: OrderDetails
-    }
+    link: ''
   },
   {
     icon: UilClipboardAlt,
     heading: "Orders",
-    link: 'orders',
-    data: {
-      route: 'orders',
-      component: OrderDetails
-    }
+    link: 'orders'
   },
   {
     icon: UilUsersAlt,
     heading: "Customers",
-    link: 'customers',
-    data: {
-      route: 'customers',
-      component: CustomerDetails
-    }
+    link: 'customers'
   },
   {
     icon: UilPackage,
     heading: 'Products',
     link: 'products',
-    data: {
-      route: 'products',
-      component: ProductDetails
-    }
   }
 ];
 

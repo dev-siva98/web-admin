@@ -7,9 +7,10 @@ import Card from "./Card/Card";
 const Cards = () => {
   return (
     <div className="admin-cards">
-      {cardsData.map((card, id) => {
+      {cardsData?.map((card, index) => {
+        console.log(card)
         return (
-          <div className="admin-cards-parent-container" key={id}>
+          <div className="admin-cards-parent-container" key={index}>
             <Card
               title={card.title}
               color={card.color}
@@ -19,7 +20,7 @@ const Cards = () => {
               series={card.series}
             />
           </div>
-        );
+        )
       })}
     </div>
   );

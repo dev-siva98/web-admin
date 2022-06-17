@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Orders.css'
 import { ordersCard } from '../../../Data/Data'
 import Card from '../Card/Card'
+import { TableContext } from '../../../AppContext'
+import OrderDetails from '../../DetailsModal/OrderDetails/OrderDetails'
 
 function Orders() {
+
+    const { setTableRouterData } = useContext(TableContext)
+
+    useEffect(() => {
+        setTableRouterData({
+            route: 'orders',
+            component: OrderDetails
+        })
+    }, [])
+
     return (
         <div className='admin-orders'>
             <h1>Orders</h1>
@@ -11,7 +23,7 @@ function Orders() {
                 {
                     ordersCard.map((card, index) => {
                         return (
-                            <Card card={card} key = {index} />
+                            <Card card={card} key={index} />
                         )
                     })
                 }

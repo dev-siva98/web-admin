@@ -23,6 +23,13 @@
   justify-content: center;
   font-family: 'Inter', sans-serif;
   height: max-content;
+  -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+}
+
+.App::-webkit-scrollbar{
+  display: none;
 }
 
 .AppGlass {
