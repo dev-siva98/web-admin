@@ -5,6 +5,7 @@ import "./Card.css";
 import { motion } from "framer-motion";
 import { UilTimes } from "@iconscout/react-unicons";
 import Chart from "react-apexcharts";
+import { Backdrop } from "@mui/material";
 
 // parent Card
 
@@ -25,13 +26,12 @@ const Card = (props) => {
 function CompactCard({ param, setExpanded }) {
   const Png = param.png;
   return (
-    <motion.div
+    <div
       className="admin-card-compact"
       style={{
         background: param.color.backGround,
         boxShadow: param.color.boxShadow,
       }}
-      layoutId="expandableCard"
       onClick={setExpanded}
     >
       <div className="admin-card-compact-radial">
@@ -46,7 +46,7 @@ function CompactCard({ param, setExpanded }) {
         <span>${param.value}</span>
         <span>Last 24 hours</span>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -104,23 +104,27 @@ function ExpandedCard({ param, setExpanded }) {
   };
 
   return (
-    <motion.div
-      className="admin-card-expanded"
-      style={{
-        background: param.color.backGround,
-        boxShadow: param.color.boxShadow,
-      }}
-      layoutId="expandableCard"
+    <Backdrop
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={true}
     >
-      <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
-        <UilTimes onClick={setExpanded} />
+      <div
+        className="admin-card-expanded"
+        style={{
+          background: param.color.backGround
+        }}
+        layoutId="expandableCard"
+      >
+        <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
+          <UilTimes onClick={setExpanded} />
+        </div>
+        <span>{param.title}</span>
+        <div className="admin-card-expanded-chart-container">
+          <Chart options={data.options} series={param.series} type="area" />
+        </div>
+        <span>Last 24 hours</span>
       </div>
-      <span>{param.title}</span>
-      <div className="admin-card-expanded-chart-container">
-        <Chart options={data.options} series={param.series} type="area" />
-      </div>
-      <span>Last 24 hours</span>
-    </motion.div>
+    </Backdrop>
   );
 }
 

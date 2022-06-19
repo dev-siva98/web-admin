@@ -11,6 +11,7 @@ function Orders() {
 
     useEffect(() => {
         setTableRouterData({
+            selectionIndex: 1,
             route: 'orders',
             component: OrderDetails
         })

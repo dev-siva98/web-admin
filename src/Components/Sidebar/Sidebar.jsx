@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import { TableContext } from '../../AppContext'
 
 const Sidebar = () => {
-  const [selected, setSelected] = useState(null); // to set active navigation style
   const [click, setClick] = useState(false);  // to open mobile navigation
-  const { setTableRouterData } = useContext(TableContext)
+  const [selected, setSelected] = useState(); // to set active navigation style
+  const { tableRouterData } = useContext(TableContext)
+  const { selectionIndex } = tableRouterData
 
   const handleClick = (index) => {
     setSelected(index)
@@ -22,6 +23,10 @@ const Sidebar = () => {
 
 
   const ref = useRef()
+
+  useEffect(() => {
+    setSelected(selectionIndex)
+  }, [selectionIndex])
 
   useEffect(() => {
     const detectClick = e => {

@@ -10,8 +10,9 @@ const MainDash = () => {
 
   useEffect(() => {
     setTableRouterData({
+      selectionIndex: 0,
       route: 'orders',
-      component: OrderDetails
+      component: OrderDetails,
     })
   }, [])
 

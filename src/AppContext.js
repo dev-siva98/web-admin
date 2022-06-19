@@ -3,7 +3,8 @@ import { createContext } from "react";
 export const TableContext = createContext({
     tableRouterData: {
         route: '',
-        component: ''
+        component: '',
+        selectionIndex: 0
     },
     setTableRouterData: () => { }
 })

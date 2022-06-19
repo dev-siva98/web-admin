@@ -27,7 +27,6 @@ function ProductDet({ data, handleShow }) {
         axios.get(`getproduct/${data.proId}`)
             .then(res => {
                 setProduct(res.data)
-                console.log(res)
             })
             .catch(err => {
                 alert(err + '')
@@ -76,7 +75,6 @@ function ProductDet({ data, handleShow }) {
             data: product
         })
             .then((res) => {
-                console.log(res.data);
                 setLoading(false)
                 handleShow()
             })
@@ -107,8 +105,6 @@ function ProductDet({ data, handleShow }) {
                 alert(err + '')
             })
     }
-
-    console.log(isDirty)
 
     return (
         <Backdrop

@@ -9,7 +9,6 @@ const Updates = () => {
 
   useEffect(() => {
     axios.get('orders').then(res => {
-      console.log(res.data)
       setOrders(res.data)
     }).catch(err => {
       alert('' + err)
@@ -18,7 +17,7 @@ const Updates = () => {
 
   return (
     <div className="admin-updates">
-      {orders?.map((order, index) => {
+      {orders?.slice(0).reverse().map((order, index) => {
         return (
           <div className="admin-updates-item"
             key={index}>

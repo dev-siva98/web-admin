@@ -13,6 +13,7 @@ function Customers() {
 
     useEffect(() => {
         setTableRouterData({
+            selectionIndex: 2,
             route: 'customers',
             component: CustomerDetails
         })

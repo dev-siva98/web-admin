@@ -8,7 +8,6 @@ const Cards = () => {
   return (
     <div className="admin-cards">
       {cardsData?.map((card, index) => {
-        console.log(card)
         return (
           <div className="admin-cards-parent-container" key={index}>
             <Card

@@ -5,7 +5,7 @@ import { UilClipboardAlt } from '@iconscout/react-unicons'
 import Card from '../Card/Card'
 import AddProduct from './AddProduct/AddProduct'
 import { TableContext } from '../../../AppContext'
-import ProductDetails from '../../DetailsModal/ProductDetails/ProductDetails'
+import ProductDetails from '../../DetailsModal/ProductDetails/ProductDet'
 
 function Products() {
 
@@ -14,6 +14,7 @@ function Products() {
 
     useEffect(() => {
         setTableRouterData({
+            selectionIndex: 3,
             route: 'products',
             component: ProductDetails
         })
