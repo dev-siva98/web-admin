@@ -5,6 +5,7 @@
 }
 
 .admin-order-details-container {
+    margin-top: 10px;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -41,6 +42,18 @@
     font-size: 15px;
     font-weight: 500;
     border-radius: 5px;
+}
+
+.admin-order-details-switch {
+    vertical-align: middle;
+}
+
+.admin-order-details-save {
+    position: absolute !important;
+    border: 1px solid blue !important;
+    padding: 0 !important;
+    left: 10px;
+    top: 5px;
 }
 
 @media screen and (max-width: 768px) {
