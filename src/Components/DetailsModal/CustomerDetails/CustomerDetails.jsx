@@ -1,7 +1,7 @@
 import React from 'react'
 import './CustomerDetails.css'
-import { Backdrop } from '@mui/material'
-import { Button } from '@mui/material'
+import { Backdrop, Button } from '@mui/material'
+import { Close } from '@mui/icons-material'
 
 function CustomerDetails({ data, handleShow }) {
 
@@ -15,11 +15,10 @@ function CustomerDetails({ data, handleShow }) {
             open={true}
         >
             <div className='admin-customer-details'>
-                <Button
+                <Close
                     onClick={handleShow}
-                    className='admin-product-details-button'
-                >
-                    Close</Button>
+                    className='admin-customer-details-button'
+                />
                 <div className="admin-customer-details-container">
                     <div className="admin-customer-details-item">
                         <span>User Id </span><span>{data.id}</span>

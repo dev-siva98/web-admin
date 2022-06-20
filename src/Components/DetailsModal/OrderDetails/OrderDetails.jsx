@@ -1,8 +1,8 @@
 import React from 'react'
 import './OrderDetails.css'
 import axios from '../../../axios'
-import { Backdrop } from '@mui/material'
-import { Button } from '@mui/material'
+import { Backdrop, Button } from '@mui/material'
+import { Close } from '@mui/icons-material'
 
 
 
@@ -14,7 +14,7 @@ function OrderDetails({ data, handleShow }) {
     const delivery = new Date(data.delivery)
         .toLocaleDateString('en-IN',
             { dateStyle: 'medium' })
-    const statusData = ['Pending','Placed', 'Delivered', 'Failed']
+    const statusData = ['Pending', 'Placed', 'Delivered', 'Failed']
 
     const handleChange = (e) => {
         axios({
@@ -35,11 +35,8 @@ function OrderDetails({ data, handleShow }) {
             open={true}
         >
             <div className='admin-order-details'>
-                <Button
-                    onClick={handleShow}
-                    className='admin-product-details-button'
-                >
-                    Close</Button>
+                <Close onClick={handleShow}
+                    className='admin-order-details-button' />
                 <div className="admin-order-details-container">
                     <div className="admin-order-details-item">
                         <span>Order Id </span><span>{data.orderId}</span>
@@ -95,12 +92,6 @@ function OrderDetails({ data, handleShow }) {
                     </div>
                     <div className="admin-order-details-item">
                         <span>Write on Cake</span><span>{data.write}</span>
-                    </div>
-                    <div className="admin-order-details-item">
-                        {/* <span>Delivery Address</span><span>{data.}</span> */}
-                    </div>
-                    <div className="admin-order-details-item">
-                        {/* <span>Products</span><span>{data.}</span> */}
                     </div>
                 </div>
             </div>

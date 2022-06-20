@@ -63,7 +63,6 @@ function ProductDet({ data, handleShow }) {
                 setProgress(0)
                 setUploading(false)
             })
-
     }
 
     const submitForm = (product) => {

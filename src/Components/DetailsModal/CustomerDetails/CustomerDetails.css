@@ -1,6 +1,7 @@
 .admin-customer-details {
     background-color: #fff;
     border-radius: 1rem;
+    position: relative;
 }
 
 .admin-customer-details-container {
@@ -12,8 +13,14 @@
 
 
 .admin-customer-details-button {
-    position: absolute !important;
-    right: 0;
+    position: absolute;
+    right: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.admin-customer-details-button:hover {
+    color: red;
 }
 
 .admin-customer-details-item {

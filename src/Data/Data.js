@@ -19,26 +19,22 @@ export const sidebarData = [
   {
     icon: UilEstate,
     heading: "Dashboard",
-    link: '',
-    selectionIndex: 1
+    link: ''
   },
   {
     icon: UilClipboardAlt,
     heading: "Orders",
-    link: 'orders',
-    selectionIndex: 2
+    link: 'orders'
   },
   {
     icon: UilUsersAlt,
     heading: "Customers",
-    link: 'customers',
-    selectionIndex: 3
+    link: 'customers'
   },
   {
     icon: UilPackage,
     heading: 'Products',
-    link: 'products',
-    selectionIndex: 4
+    link: 'products'
   }
 ];
 

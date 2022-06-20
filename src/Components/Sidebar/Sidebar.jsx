@@ -12,15 +12,9 @@ const Sidebar = () => {
   const { tableRouterData } = useContext(TableContext)
   const { selectionIndex } = tableRouterData
 
-  const handleClick = (index) => {
-    setSelected(index)
-    setClick(!click)
-  }
-
   const handleSignout = () => {
     setClick(!click)
   }
-
 
   const ref = useRef()
 
@@ -67,7 +61,7 @@ const Sidebar = () => {
                 >
                   <div
                     className={`admin-sidebar-menu-item ${selected === index ? "active" : ""}`}
-                    onClick={() => handleClick(index)}
+                    onClick={() => setClick(!click)}
                   >
                     <item.icon />
                     <span>{item.heading}</span>
