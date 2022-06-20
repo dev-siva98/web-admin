@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Card.css";
 // import { CircularProgressbar } from "react-circular-progressbar";
 // import "react-circular-progressbar/dist/styles.css";
-import { motion } from "framer-motion";
 import { UilTimes } from "@iconscout/react-unicons";
 import Chart from "react-apexcharts";
 import { Backdrop } from "@mui/material";
@@ -43,7 +42,7 @@ function CompactCard({ param, setExpanded }) {
       </div>
       <div className="admin-card-compact-detail">
         <Png />
-        <span>${param.value}</span>
+        <span>&#8377; {param.value}</span>
         <span>Last 24 hours</span>
       </div>
     </div>
