@@ -13,6 +13,7 @@
     position: absolute !important;
     right: 20px;
     border: 1px solid #0d6efd !important;
+    padding: 0 !important;
 }
 
 .admin-add-product-main {
