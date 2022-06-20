@@ -9,6 +9,8 @@
   --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
   --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
   --activeItem: #f799a354;
+  --scroll-bar-color: #c5c5c5;
+  --scroll-bar-bg-color: #f6f6f6;
 }
 
 .App {
@@ -24,12 +26,8 @@
   font-family: 'Inter', sans-serif;
   height: max-content;
   -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-}
-
-.App::-webkit-scrollbar{
-  display: none;
+  /* IE and Edge */
+  scrollbar-width: none;
 }
 
 .AppGlass {
@@ -40,7 +38,28 @@
   width: 97%;
   background: var(--glass);
   padding-bottom: 1rem;
-  overflow: hidden;
+  overflow: overlay;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-bar-color);
+  background: transparent;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-bar-color);
+  border-radius: 20px;
 }
 
 
@@ -55,5 +74,9 @@
   .AppGlass {
     grid-template-columns: 1fr;
     grid-template-rows: 80px 1fr 1fr 1fr;
+  }
+
+  .AppGlass::-webkit-scrollbar {
+    display: none;
   }
 }

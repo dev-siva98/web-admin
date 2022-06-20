@@ -3,7 +3,6 @@ import "./Updates.css";
 import axios from "../../../axios";
 import TimeAgo from 'react-timeago';
 
-
 const Updates = () => {
   const [orders, setOrders] = useState([])
 
