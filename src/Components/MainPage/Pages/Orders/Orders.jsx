@@ -2,6 +2,8 @@ import React from 'react'
 import './Orders.css'
 import Card from '../../Card/Card'
 import { UilClipboardAlt } from '@iconscout/react-unicons'
+import Table from '../../Table/Table'
+import OrderDetails from '../../DetailsModal/OrderDetails/OrderDetails'
 
 
 function Orders() {
@@ -47,16 +49,19 @@ function Orders() {
 
     return (
         <div className='admin-orders'>
-            <h1>Orders</h1>
-            <div className="admin-orders-card-container">
-                {
-                    ordersCard.map((card, index) => {
-                        return (
-                            <Card card={card} key={index} />
-                        )
-                    })
-                }
+            <div className="admin-orders-container">
+                <h1>Orders</h1>
+                <div className="admin-orders-card-container">
+                    {
+                        ordersCard.map((card, index) => {
+                            return (
+                                <Card card={card} key={index} />
+                            )
+                        })
+                    }
+                </div>
             </div>
+            <Table route='orders' component={OrderDetails} />
         </div>
     )
 }

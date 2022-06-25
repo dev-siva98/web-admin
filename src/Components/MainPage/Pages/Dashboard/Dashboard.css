@@ -1,17 +1,17 @@
-.admin-main-dash {
+.admin-main-dash-container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 @media screen and (max-width: 1200px) {
-    .admin-main-dash {
+    .admin-main-dash-container{
         justify-content: flex-start;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .admin-main-dash {
+    .admin-main-dash-container{
         align-items: center;
     }
 }

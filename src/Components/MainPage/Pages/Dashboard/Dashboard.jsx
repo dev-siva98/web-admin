@@ -8,8 +8,10 @@ const MainDash = () => {
 
   return (
     <div className="admin-main-dash">
-      <h1>Dashboard</h1>
-      <Cards />
+      <div className="admin-main-dash-container">
+        <h1>Dashboard</h1>
+        <Cards />
+      </div>
       <Table route={'orders'} component={OrderDetails} />
     </div>
   );

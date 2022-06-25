@@ -35,7 +35,7 @@ export default function EnhancedTable({ route, component }) {
 
     useEffect(() => {
         setLoading(true)
-        axios.get('orders')
+        axios.get(route)
             .then(res => {
                 setRows(res.data)
                 tableBodyData.forEach((data) => {
@@ -50,7 +50,7 @@ export default function EnhancedTable({ route, component }) {
             setLoading(false)
             setTableBody([])
         }
-    }, [showModal, 'orders'])
+    }, [showModal, route])
 
 
     const handleRequestSort = (event, property) => {
@@ -129,7 +129,7 @@ export default function EnhancedTable({ route, component }) {
                 <Paper sx={{ mb: 2 }}>
                     <EnhancedTableToolbar
                         numSelected={selected.length}
-                        title={'orders'} />
+                        title={route} />
                     <TableContainer sx={{ overflowX: 'auto', minHeight: '120px' }}>
                         {
                             loading ? <Load /> :
@@ -145,7 +145,7 @@ export default function EnhancedTable({ route, component }) {
                                         onSelectAllClick={handleSelectAllClick}
                                         onRequestSort={handleRequestSort}
                                         rowCount={rows.length}
-                                        title={'orders'}
+                                        title={route}
                                     />
 
                                     <TableBody>
@@ -191,7 +191,7 @@ export default function EnhancedTable({ route, component }) {
                                                         <TableCell align="left">{row[tableBody[1]]}</TableCell>
                                                         <TableCell align="left">{row[tableBody[2]]}</TableCell>
                                                         {
-                                                            'orders' !== 'customers' &&
+                                                            route !== 'customers' &&
                                                             <TableCell align="left">{row[tableBody[3]]}</TableCell>
                                                         }
                                                         <TableCell align="left">{createdAt}</TableCell>
