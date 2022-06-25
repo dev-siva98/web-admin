@@ -63,6 +63,7 @@ export default function EnhancedTable() {
     const { tableRouterData } = useContext(TableContext)
     const { route, component } = tableRouterData
     const { loading, setLoading } = useContext(LoadingContext)
+    
     useEffect(() => {
         setLoading(true)
         axios.get(route)
