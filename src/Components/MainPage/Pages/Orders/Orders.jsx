@@ -1,14 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import './Orders.css'
-import Card from '../Card/Card'
-import { TableContext } from '../../../AppContext'
-import OrderDetails from '../../DetailsModal/OrderDetails/OrderDetails'
+import Card from '../../Card/Card'
 import { UilClipboardAlt } from '@iconscout/react-unicons'
 
 
 function Orders() {
-
-    const { setTableRouterData } = useContext(TableContext)
 
     const ordersCard = [
         {
@@ -48,15 +44,6 @@ function Orders() {
 
         },
     ]
-
-
-    useEffect(() => {
-        setTableRouterData({
-            selectionIndex: 1,
-            route: 'orders',
-            component: OrderDetails
-        })
-    }, [])
 
     return (
         <div className='admin-orders'>

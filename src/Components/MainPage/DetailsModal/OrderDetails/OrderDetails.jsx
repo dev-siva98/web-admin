@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './OrderDetails.css'
-import axios from '../../../axios'
+import axios from '../../../../axios'
 import { Backdrop, Button } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import Switch from "react-switch";

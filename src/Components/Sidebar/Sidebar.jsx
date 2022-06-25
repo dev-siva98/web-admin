@@ -1,26 +1,19 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 import { UilBars, UilTimes, UilSignOutAlt } from "@iconscout/react-unicons";
 import { sidebarData } from "../../Data/Data";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { TableContext } from '../../AppContext'
 
 const Sidebar = () => {
   const [click, setClick] = useState(false);  // to open mobile navigation
   const [selected, setSelected] = useState(); // to set active navigation style
-  const { tableRouterData } = useContext(TableContext)
-  const { selectionIndex } = tableRouterData
 
   const handleSignout = () => {
     setClick(!click)
   }
 
   const ref = useRef()
-
-  useEffect(() => {
-    setSelected(selectionIndex)
-  }, [selectionIndex])
 
   useEffect(() => {
     const detectClick = e => {

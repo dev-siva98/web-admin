@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './AddProduct.css'
-import axios from '../../../../axios'
+import axios from '../../../../../axios'
 import { useForm } from 'react-hook-form'
 import Axios from 'axios'
 import { Line } from 'rc-progress'

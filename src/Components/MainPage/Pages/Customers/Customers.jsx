@@ -1,23 +1,11 @@
-import React, { useContext, useEffect } from 'react'
-import { customersCard } from '../../../Data/Data'
-import Card from '../Card/Card'
+import React from 'react'
+import { customersCard } from '../../../../Data/Data'
+import Card from '../../Card/Card'
 import './Customers.css'
 import { UilClipboardAlt } from '@iconscout/react-unicons'
-import { TableContext } from '../../../AppContext'
-import CustomerDetails from '../../DetailsModal/CustomerDetails/CustomerDetails'
 
 
 function Customers() {
-
-    const { setTableRouterData } = useContext(TableContext)
-
-    useEffect(() => {
-        setTableRouterData({
-            selectionIndex: 2,
-            route: 'customers',
-            component: CustomerDetails
-        })
-    }, [])
 
     const handleClick = () => {
         alert('add')

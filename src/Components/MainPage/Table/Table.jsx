@@ -13,43 +13,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
-import axios from '../../axios';
-import { LoadingContext, TableContext } from '../../AppContext';
-import { tableBodyData } from '../../Data/Data'
-import Load from '../Loader/Load'
+import axios from '../../../axios';
+import { LoadingContext } from '../../../AppContext';
+import Load from '../../Loader/Load'
+import stableSort from './stableSort';
+import getComparator from './getComparator';
+import { tableBodyData } from '../../../Data/Data';
 
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-// This method is created for cross-browser compatibility, if you don't
-// need to support IE11, you can use Array.prototype.sort() directly
-function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0], b[0]);
-        if (order !== 0) {
-            return order;
-        }
-        return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-}
-
-
-export default function EnhancedTable() {
+export default function EnhancedTable({ route, component }) {
     const [order, setOrder] = useState('desc');
     const [orderBy, setOrderBy] = useState('createdAt');
     const [selected, setSelected] = useState([]);
@@ -60,16 +31,13 @@ export default function EnhancedTable() {
     const [modalDetails, setModalDetails] = useState(null)
     const [tableBody, setTableBody] = useState([])
     const [showModal, setShowModal] = useState(false)
-    const { tableRouterData } = useContext(TableContext)
-    const { route, component } = tableRouterData
     const { loading, setLoading } = useContext(LoadingContext)
-    
+
     useEffect(() => {
         setLoading(true)
-        axios.get(route)
+        axios.get('orders')
             .then(res => {
                 setRows(res.data)
-                console.log(res.data)
                 tableBodyData.forEach((data) => {
                     if (data.id === route) setTableBody(data.bodyData)
                 })
@@ -82,7 +50,7 @@ export default function EnhancedTable() {
             setLoading(false)
             setTableBody([])
         }
-    }, [showModal, route])
+    }, [showModal, 'orders'])
 
 
     const handleRequestSort = (event, property) => {
@@ -93,19 +61,19 @@ export default function EnhancedTable() {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelecteds = rows.forEach((n) => n.orderId);
+            const newSelecteds = rows.map((n) => n.id);
             setSelected(newSelecteds);
             return;
         }
         setSelected([]);
     };
 
-    const handleClick = (event, orderId) => {
-        const selectedIndex = selected.indexOf(orderId);
+    const handleClick = (event, id) => {
+        const selectedIndex = selected.indexOf(id);
         let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, orderId);
+            newSelected = newSelected.concat(selected, id);
         } else if (selectedIndex === 0) {
             newSelected = newSelected.concat(selected.slice(1));
         } else if (selectedIndex === selected.length - 1) {
@@ -143,9 +111,9 @@ export default function EnhancedTable() {
         setShowModal(!showModal)
     }
 
-    const Component = component
+    const Component = component //modal to show individual component
 
-    const isSelected = (orderId) => selected.indexOf(orderId) !== -1;
+    const isSelected = (id) => selected.indexOf(id) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
@@ -161,7 +129,7 @@ export default function EnhancedTable() {
                 <Paper sx={{ mb: 2 }}>
                     <EnhancedTableToolbar
                         numSelected={selected.length}
-                        title={route} />
+                        title={'orders'} />
                     <TableContainer sx={{ overflowX: 'auto', minHeight: '120px' }}>
                         {
                             loading ? <Load /> :
@@ -177,7 +145,7 @@ export default function EnhancedTable() {
                                         onSelectAllClick={handleSelectAllClick}
                                         onRequestSort={handleRequestSort}
                                         rowCount={rows.length}
-                                        title={route}
+                                        title={'orders'}
                                     />
 
                                     <TableBody>
@@ -186,7 +154,7 @@ export default function EnhancedTable() {
                                         {stableSort(rows, getComparator(order, orderBy))
                                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                             .map((row, index) => {
-                                                const isItemSelected = isSelected(row.orderId);
+                                                const isItemSelected = isSelected(row.id);
                                                 const labelId = `enhanced-table-checkbox-${index}`;
                                                 const createdAt = new Date(row.createdAt)
                                                     .toLocaleString('en-IN',
@@ -202,7 +170,7 @@ export default function EnhancedTable() {
                                                     >
                                                         <TableCell padding="checkbox">
                                                             <Checkbox
-                                                                onClick={(event) => handleClick(event, row.orderId)}
+                                                                onClick={(event) => handleClick(event, row.id)}
                                                                 color="primary"
                                                                 checked={isItemSelected}
                                                                 inputProps={{
@@ -223,7 +191,7 @@ export default function EnhancedTable() {
                                                         <TableCell align="left">{row[tableBody[1]]}</TableCell>
                                                         <TableCell align="left">{row[tableBody[2]]}</TableCell>
                                                         {
-                                                            route !== 'customers' &&
+                                                            'orders' !== 'customers' &&
                                                             <TableCell align="left">{row[tableBody[3]]}</TableCell>
                                                         }
                                                         <TableCell align="left">{createdAt}</TableCell>
