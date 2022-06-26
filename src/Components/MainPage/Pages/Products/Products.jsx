@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Products.css'
 import { productsCard } from '../../../../Data/Data'
 import { UilClipboardAlt } from '@iconscout/react-unicons'
@@ -6,10 +6,16 @@ import Card from '../../Card/Card'
 import AddProduct from './AddProduct/AddProduct'
 import Table from '../../Table/Table'
 import ProductDetails from '../../DetailsModal/ProductDetails/ProductDetails'
+import { SelectMenuContext } from '../../../../AppContext'
 
 function Products() {
 
     const [show, setShow] = useState(false)
+    const { setSelected } = useContext(SelectMenuContext)
+
+    useEffect(() => {
+        setSelected(3)
+    }, [])
 
     const handleClick = () => {
         setShow(!show)

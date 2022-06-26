@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { customersCard } from '../../../../Data/Data'
 import Card from '../../Card/Card'
 import './Customers.css'
 import { UilClipboardAlt } from '@iconscout/react-unicons'
 import Table from '../../Table/Table'
 import CustomerDetails from '../../DetailsModal/CustomerDetails/CustomerDetails'
+import { SelectMenuContext } from '../../../../AppContext'
 
 function Customers() {
+
+    const { setSelected } = useContext(SelectMenuContext)
+
+    useEffect(() => {
+        setSelected(2)
+    }, [])
 
     const handleClick = () => {
         alert('add')

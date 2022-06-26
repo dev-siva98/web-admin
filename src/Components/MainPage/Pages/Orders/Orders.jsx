@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Orders.css'
 import Card from '../../Card/Card'
 import { UilClipboardAlt } from '@iconscout/react-unicons'
 import Table from '../../Table/Table'
 import OrderDetails from '../../DetailsModal/OrderDetails/OrderDetails'
+import { SelectMenuContext } from '../../../../AppContext'
 
 
 function Orders() {
+
+    const { setSelected } = useContext(SelectMenuContext)
+
+    useEffect(() => {
+        setSelected(1)
+    }, [])
 
     const ordersCard = [
         {
