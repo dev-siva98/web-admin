@@ -222,7 +222,13 @@ export default function EnhancedTable({ route, component }) {
                     />
                 </Paper>
                 <FormControlLabel
-                    control={<Switch checked={dense} onChange={handleChangeDense} />}
+                    sx={{ marginLeft: '5px' }}
+                    control={
+                        <Switch
+                            Ichecked={dense}
+                            onChange={handleChangeDense}
+                        />
+                    }
                     label="Dense padding"
                 />
             </Box>

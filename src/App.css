@@ -33,12 +33,11 @@
 .AppGlass {
   display: grid;
   grid-template-columns: 11rem auto 20rem;
-  grid-template-rows: 1fr auto;
   gap: 16px;
   width: 97%;
   background: var(--glass);
   padding-bottom: 1rem;
-  overflow: overlay;
+  overflow: hidden;
 }
 
 * {
@@ -62,18 +61,18 @@
   border-radius: 20px;
 }
 
-
 @media screen and (max-width: 1200px) {
   .AppGlass {
-    grid-template-columns: 20% 45% 30%;
+    grid-template-columns: 20% auto;
     overflow-y: scroll;
   }
 }
 
 @media screen and (max-width: 768px) {
+
   .AppGlass {
     grid-template-columns: 1fr;
-    grid-template-rows: 80px 1fr 1fr 1fr;
+    grid-template-rows: 80px 1fr;
   }
 
   .AppGlass::-webkit-scrollbar {

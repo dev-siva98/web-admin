@@ -1,10 +1,7 @@
 .admin-table {
     position: relative;
-    grid-row: 2 / -1;
-    grid-column: 2 / 3;
     margin-top: 2rem;
-    justify-self: center;
-    width: 100%;
+    width: 670px;
     overflow-x: auto;
     -ms-overflow-style: none;
     /* IE and Edge */
@@ -36,15 +33,12 @@
 
 @media screen and (max-width: 1200px) {
     .admin-table {
-        grid-column: 2 / 4;
         width: 96%;
     }
 }
 
 @media screen and (max-width: 768px) {
     .admin-table {
-        grid-row: 3 / 4;
-        grid-column: 1 / -1;
         position: relative;
         display: flex;
         flex-direction: column;

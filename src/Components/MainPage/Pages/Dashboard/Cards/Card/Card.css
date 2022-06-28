@@ -96,6 +96,11 @@
 }
 
 @media screen and (max-width: 1200px) {
+
+  .admin-card-compact {
+    width: 400px;
+  }
+
   .admin-card-expanded {
     top: 2rem;
     height: 45vh;
@@ -104,6 +109,11 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  .admin-card-compact {
+    width: 300px;
+  }
+
   .admin-card-expanded {
     top: 8rem;
     height: 50%;

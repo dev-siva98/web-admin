@@ -4,13 +4,11 @@
   gap: 10px;
 }
 
-.admin-cards-parent-container {
-  width: 100%;
-}
-
 @media screen and (max-width: 1200px) {
   .admin-cards {
     grid-template-columns: 1fr;
+    justify-items: center;
+    margin-right: 25px;
   }
 
   .admin-cards-parent-container {
@@ -20,6 +18,6 @@
 
 @media screen and (max-width: 768px) {
   .admin-cards {
-    width: 90%;
+    margin: 0;
   }
 }

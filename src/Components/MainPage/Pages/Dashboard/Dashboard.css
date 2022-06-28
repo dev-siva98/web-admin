@@ -1,7 +1,5 @@
-.admin-main-dash-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.admin-main-dash {
+    width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
