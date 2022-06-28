@@ -1,15 +1,4 @@
 .admin-main-dash {
-    width: 100%;
-}
-
-@media screen and (max-width: 1200px) {
-    .admin-main-dash-container{
-        justify-content: flex-start;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .admin-main-dash-container{
-        align-items: center;
-    }
+    display: flex;
+    flex-direction: column;
 }
