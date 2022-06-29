@@ -11,11 +11,48 @@ import {
 const Cards = () => {
 
   const [admin, setAdmin] = useState()
+  const [online, setOnline] = useState()
+  const [cod, setCod] = useState()
+  const [total, setTotal] = useState()
 
   useEffect(() => {
     axios.get('dashboard')
       .then(res => {
-        setAdmin(res.data)
+        setAdmin(res.data.dashboard)
+        let online = {
+          data: [],
+          date: []
+        }
+        let cod = {
+          data: [],
+          date: []
+        }
+        let total = {
+          data: [],
+          date: []
+        }
+        let date = new Date()
+        res.data.orders.forEach(data => {
+          if (new Date(data.createdAt) > date.setMonth(date.getMonth() - 1)) {
+            if (data.paymentMode === 'online') {
+              online.data.push(data.total)
+              online.date.push(data.createdAt)
+            }
+            else if (data.paymentMode === 'cod') {
+              cod.data.push(data.total)
+              cod.date.push(data.createdAt)
+            }
+            total.data.push(data.total)
+            total.date.push(data.createdAt)
+          }
+        })
+        setOnline(online)
+        setCod(cod)
+        setTotal(total)
+        console.log(online)
+      })
+      .catch(err => {
+        alert('' + err)
       })
   }, [])
 
@@ -29,10 +66,11 @@ const Cards = () => {
       barValue: 70,
       value: admin?.online,
       png: UilUsdSquare,
+      date: online?.date,
       series: [
         {
-          name: "Sales",
-          data: [31, 40, 28, 51, 42, 109, 100],
+          name: "Online",
+          data: online?.data
         },
       ],
     },
@@ -45,10 +83,11 @@ const Cards = () => {
       barValue: 80,
       value: admin?.cod,
       png: UilMoneyWithdrawal,
+      date: cod?.date,
       series: [
         {
-          name: "Revenue",
-          data: [10, 100, 50, 70, 80, 30, 40],
+          name: "COD",
+          data: cod?.data,
         },
       ],
     },
@@ -62,10 +101,11 @@ const Cards = () => {
       barValue: 60,
       value: admin?.total,
       png: UilClipboardAlt,
+      date: total?.date,
       series: [
         {
-          name: "Expenses",
-          data: [10, 25, 15, 30, 12, 15, 20],
+          name: "Total",
+          data: total?.data,
         },
       ],
     },
@@ -82,6 +122,7 @@ const Cards = () => {
               barValue={card.barValue}
               value={card.value}
               png={card.png}
+              date={card.date}
               series={card.series}
             />
           </div>
