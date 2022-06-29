@@ -22,14 +22,14 @@ function OrderDetails({ data, handleShow }) {
         .toLocaleDateString('en-IN',
             { dateStyle: 'medium' })
 
-    const statusData = ['Placed', 'Pending', 'Failed']
+    const statusData = ['placed', 'pending', 'failed']
 
     const handleToggle = () => {
         setChecked(!checked)
     }
 
     useEffect(() => {
-        if (data.orderStatus === 'Delivered') setChecked(true)
+        if (data.orderStatus === 'delivered') setChecked(true)
     }, [])
 
     const handleChange = (e) => {
@@ -43,7 +43,7 @@ function OrderDetails({ data, handleShow }) {
             url: 'changeorderstatus',
             data: {
                 orderId: data.orderId,
-                value: checked ? 'Delivered' : input,
+                value: checked ? 'delivered' : input,
                 checked: checked
             }
         })
@@ -117,12 +117,13 @@ function OrderDetails({ data, handleShow }) {
                         {
                             checked ? <span>Delivered</span> :
                                 <span>
-                                    <select name='orderStatus'
+                                    <select
+                                        name='orderStatus'
                                         onChange={(e) => {
                                             handleChange(e)
                                         }}>
                                         {
-                                            data.orderStatus !== 'Delivered' && <option value={data.orderStatus}>
+                                            data.orderStatus !== 'delivered' && <option value={data.orderStatus}>
                                                 {data.orderStatus}
                                             </option>
                                         }

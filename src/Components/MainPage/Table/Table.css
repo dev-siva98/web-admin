@@ -3,6 +3,7 @@
     margin-top: 2rem;
     width: 670px;
     overflow-x: auto;
+    text-transform: capitalize;
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;

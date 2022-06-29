@@ -28,6 +28,10 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.admin-order-details-item select {
+    text-transform: capitalize;
+}
+
 .admin-order-details-item>span:nth-of-type(1) {
     color: #555;
 }

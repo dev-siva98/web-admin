@@ -21,6 +21,7 @@ import getComparator from './getComparator';
 import { tableBodyData } from '../../../Data/Data';
 
 export default function EnhancedTable({ route, component }) {
+    
     const [order, setOrder] = useState('desc');
     const [orderBy, setOrderBy] = useState('createdAt');
     const [selected, setSelected] = useState([]);
@@ -45,11 +46,6 @@ export default function EnhancedTable({ route, component }) {
             }).catch(err => {
                 alert(err + "")
             })
-        return () => {
-            setRows([])
-            setLoading(false)
-            setTableBody([])
-        }
     }, [showModal, route])
 
 
@@ -225,7 +221,7 @@ export default function EnhancedTable({ route, component }) {
                     sx={{ marginLeft: '5px' }}
                     control={
                         <Switch
-                            Ichecked={dense}
+                            checked={dense}
                             onChange={handleChangeDense}
                         />
                     }
